@@ -13,7 +13,10 @@ import {
 import { useRouter } from "next/router";
 import Layout from "@/components/Layots/RootLayot";
 import Image from "next/image";
-import { useGetAllCategoryBySlugQuery, useGetAllCategoryQuery } from "@/redux/api/CategoryApi/category";
+import {
+  useGetAllCategoryBySlugQuery,
+  useGetAllCategoryQuery,
+} from "@/redux/api/CategoryApi/category";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -21,13 +24,6 @@ const sortOptions = [
   { name: "Newest", href: "#", current: false },
   { name: "Price: Low to High", href: "#", current: false },
   { name: "Price: High to Low", href: "#", current: false },
-];
-const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Travel Bags", href: "#" },
-  { name: "Hip Bags", href: "#" },
-  { name: "Laptop Sleeves", href: "#" },
 ];
 
 function classNames(...classes: any[]): any {
@@ -40,19 +36,32 @@ export default function AllProducts() {
   const router = useRouter();
   const { products } = router.query;
 
-  const { data:allProudcts, isLoading, isError } =
-    useGetAllProudctCategoryNameQuery(products);
- 
-  const productData=allProudcts?.data?.data
+  const [selectedOption, setSelectedOption] = useState<any>(null);
 
+  const handleOptionClick = (categoryName: any) => {
+    setSelectedOption(categoryName);
+    const productUrl = `/products/${categoryName.name.toLowerCase()}`;
+    router.push(productUrl);
+  };
+
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const handleFilter = () => {
+    // Implement your filtering logic here
+  };
+
+  const {
+    data: allProudcts,
+    isLoading,
+    isError,
+  } = useGetAllProudctCategoryNameQuery(products);
+
+  const productData = allProudcts?.data?.data;
 
   //category loaded
-  const { data: categoryData } = useGetAllCategoryBySlugQuery(products)
+  const { data: categoryData } = useGetAllCategoryBySlugQuery(products);
   const categories = categoryData?.data?.categories;
-
-
-  console.log(categoryData +"this is category")
-  
 
   const filters = [
     {
@@ -60,7 +69,6 @@ export default function AllProducts() {
       name: "Category",
       options: categories,
     },
-    
   ];
 
   if (isLoading) {
@@ -154,19 +162,19 @@ export default function AllProducts() {
                                       key={option.value}
                                       className="flex items-center"
                                     >
-                                      <input
-                                        id={`filter-mobile-${section.id}-${optionIdx}`}
-                                        name={`${section.id}[]`}
-                                        defaultValue={option.value}
-                                        type="checkbox"
-                                        defaultChecked={option.checked}
-                                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                      />
                                       <label
-                                        htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                        className="ml-3 min-w-0 flex-1 text-gray-500"
+                                        key={optionIdx}
+                                        htmlFor={`filter-${option.id}`}
+                                        className={`ml-3 capitalize text-sm  cursor-pointer text-gray-600 ${
+                                          selectedOption === option
+                                            ? "bg-gray-400 w-full p-3"
+                                            : ""
+                                        }`}
+                                        onClick={() =>
+                                          handleOptionClick(option)
+                                        }
                                       >
-                                        {option.label}
+                                        {option.name}
                                       </label>
                                     </div>
                                   )
@@ -178,18 +186,27 @@ export default function AllProducts() {
                       </Disclosure>
                     ))}
 
-                    <ul
-                      role="list"
-                      className="px-2 py-3 font-medium text-gray-900"
-                    >
-                      {subCategories.map((category) => (
-                        <li key={category.name}>
-                          <a href={category.href} className="block px-2 py-3">
-                            {category.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="p-4 border border-gray-300 rounded shadow-lg">
+                      <h2 className="text-lg font-semibold">Filter by Price</h2>
+                      <div className="mt-2 space-y-2">
+                        <input
+                          type="number"
+                          placeholder="Min Price"
+                          value={minPrice}
+                          onChange={(e) => setMinPrice(e.target.value)}
+                          className="w-1/2 p-2 border border-gray-300 rounded"
+                        />
+                        <span className="text-gray-600">to</span>
+                        <input
+                          type="number"
+                          placeholder="Max Price"
+                          value={maxPrice}
+                          onChange={(e) => setMaxPrice(e.target.value)}
+                          className="w-1/2 p-2 border border-gray-300 rounded"
+                        />
+                      </div>
+                      {/* Display filtered results here */}
+                    </div>
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -251,13 +268,6 @@ export default function AllProducts() {
 
               <button
                 type="button"
-                className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
-              >
-                <span className="sr-only">View grid</span>
-                <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
@@ -275,17 +285,26 @@ export default function AllProducts() {
             <div className=" grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
               {/* Filters */}
               <form className="   hidden lg:block lg:col-span-1">
-                <h3 className="sr-only">Categories</h3>
-                <ul
-                  role="list"
-                  className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
-                >
-                  {subCategories.map((category) => (
-                    <li key={category.name}>
-                      <a href={category.href}>{category.name}</a>
-                    </li>
-                  ))}
-                </ul>
+                <div className="w-full">
+                  <h2 className="text-lg font-semibold">Filter by Price</h2>
+                  <div className="mt-2 space-y-2">
+                    <input
+                      type="number"
+                      placeholder="Min Price"
+                      value={minPrice}
+                      onChange={(e) => setMinPrice(e.target.value)}
+                      className=" p-2 w-full border border-gray-300 rounded"
+                    />
+                    <p className="text-gray-600 text-center">to</p>
+                    <input
+                      type="number"
+                      placeholder="Max Price"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(e.target.value)}
+                      className=" p-2  w-full border border-gray-300 rounded"
+                    />
+                  </div>
+                </div>
 
                 {filters.map((section) => (
                   <Disclosure
@@ -323,17 +342,15 @@ export default function AllProducts() {
                                   key={option.value}
                                   className="flex items-center"
                                 >
-                                  <input
-                                    id={`filter-${section.id}-${optionIdx}`}
-                                    name={`${section.id}[]`}
-                                    defaultValue={option.name}
-                                    type="checkbox"
-                                    defaultChecked={option.checked}
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                  />
                                   <label
-                                    htmlFor={`filter-${section.id}-${optionIdx}`}
-                                    className="ml-3 capitalize text-sm text-gray-600"
+                                    key={optionIdx}
+                                    htmlFor={`filter-${option.id}`}
+                                    className={`ml-3 capitalize text-sm text-gray-600 cursor-pointer ${
+                                      selectedOption === option
+                                        ? "bg-gray-400 w-full p-3"
+                                        : ""
+                                    }`}
+                                    onClick={() => handleOptionClick(option)}
                                   >
                                     {option.name}
                                   </label>
@@ -375,7 +392,7 @@ export default function AllProducts() {
                       </button>
                     </div>
                   </>
-                ))} 
+                ))}
               </div>
             </div>
           </section>
