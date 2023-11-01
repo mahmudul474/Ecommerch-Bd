@@ -1,0 +1,114 @@
+import React from "react";
+
+export default function ProfileComponent() {
+  return (
+    <div className="bg-gray-100 p-5 mx-5  rounded ">
+      <div>
+        <h2 className="text-lg font-semibold  capitalize">Profile Information</h2>
+      </div>
+
+      <form className="py-5">
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div>
+            <label
+              htmlFor="first_name"
+              className="block mb-2 text-sm font-medium text-gray-900  "
+            >
+              First name
+            </label>
+            <input
+              type="text"
+              id="first_name"
+              className="bg-gray-50 border  border-primary text-gray-900 text-sm rounded-lg    block w-full p-2.5      "
+              placeholder="John"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="last_name"
+              className="block mb-2 text-sm font-medium text-gray-900  "
+            >
+              Last name
+            </label>
+            <input
+              type="text"
+              id="last_name"
+              className="bg-gray-50 border  border-primary text-gray-900 text-sm rounded-lg    block w-full p-2.5       "
+              placeholder="Doe"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="Email"
+              className="block mb-2 text-sm font-medium text-gray-900  "
+            >
+              Email
+            </label>
+            <input
+              type="text"
+              id="Email"
+              className="bg-gray-50 border  border-primary text-gray-900 text-sm rounded-lg    block w-full p-2.5      "
+              placeholder="jondho@gmail.com"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="phone"
+              className="block mb-2 text-sm font-medium text-gray-900  "
+            >
+              Phone number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              className="bg-gray-50 border  border-primary text-gray-900 text-sm rounded-lg    block w-full p-2.5      "
+              placeholder="123-45-678"
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="website"
+              className="block mb-2 text-sm font-medium text-gray-900  "
+            >
+              optional 
+            </label>
+            <input
+              type="url"
+              id="website"
+              className="bg-gray-50 border  border-primary text-gray-900 text-sm rounded-lg    block w-full p-2.5     "
+              placeholder="flowbite.com"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="visitors"
+              className="block mb-2 text-sm font-medium text-gray-900  "
+            >
+              optional
+            </label>
+            <input
+              type="number"
+              id="visitors"
+              className="bg-gray-50 border  border-primary text-gray-900 text-sm rounded-lg    block w-full p-2.5      "
+              placeholder=""
+              required
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="border px-10 border-primary bg-transparent hover:bg-primary  focus:ring-4  text-black   font-medium rounded-lg text-sm w-full sm:w-auto  py-2.5 text-center    "
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+}

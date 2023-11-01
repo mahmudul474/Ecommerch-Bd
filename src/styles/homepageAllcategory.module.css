@@ -1,0 +1,49 @@
+.customHeading {
+    text-align: center;
+    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);
+  }
+
+
+   
+ .card{
+    display: inline-block;
+    
+    border: 1px solid transparent;
+    box-shadow: 0 0 13px transparent;
+    border-radius: 4px;
+    margin: 4px;
+    padding: 6px;
+    width: 138px;
+    height: 130px;
+    text-align: center;
+}
+
+.card:hover{
+  box-shadow: 0 0 13px #0072bba6 !important;
+  border-radius: 4px;
+  color: #0072bb !important;
+}
+
+.title{
+  text-align: center;
+  font-size: medium;
+  font-weight:  400;
+  text-transform: capitalize;
+}
+
+.card:hover .title {
+  outline: 0 none;
+  text-decoration: none;
+  color: #0072bb !important;
+}
+
+
+.imgContainer{
+  
+        height: 56px;
+        width: 65px;
+        margin: auto;
+        text-align: center;
+        display: block;
+    
+}
