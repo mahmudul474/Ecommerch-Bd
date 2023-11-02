@@ -7,6 +7,7 @@ import { api } from './api/apiSlice'
   reducer:{
         product:productReducer,
         cart:cartReducer,
+       
   [api.reducerPath]:api.reducer
   
   

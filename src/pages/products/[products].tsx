@@ -1,8 +1,13 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
-import { useGetAllProudctCategoryNameQuery } from "@/redux/api/ProductApi/products";
+import {
+  useGetAllProudctCategoryNameQuery,
+  useGetFilteredAndSortedProductsQuery,
+  useGetFilteredByPriceAndSortedProductsQuery,
+  useGetFilteredByPriceProductsQuery,
+} from "@/redux/api/ProductApi/products";
 import {
   ChevronDownIcon,
   FunnelIcon,
@@ -17,6 +22,8 @@ import {
   useGetAllCategoryBySlugQuery,
   useGetAllCategoryQuery,
 } from "@/redux/api/CategoryApi/category";
+import ProductCard from "@/components/ProductsCard/productCard";
+import { number } from "yup";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -37,27 +44,35 @@ export default function AllProducts() {
   const { products } = router.query;
 
   const [selectedOption, setSelectedOption] = useState<any>(null);
-
   const handleOptionClick = (categoryName: any) => {
     setSelectedOption(categoryName);
     const productUrl = `/products/${categoryName.name.toLowerCase()}`;
     router.push(productUrl);
   };
 
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [sortBy, setSortBy] = useState("name");
 
-  const handleFilter = () => {
-    // Implement your filtering logic here
+  const handleMinPriceChange = (event: any) => {
+    const newMinPrice = parseInt(event.target.value, 10);
+    if (!isNaN(newMinPrice) && newMinPrice <= maxPrice) {
+      setMinPrice(newMinPrice);
+    }
+  };
+
+  const handleMaxPriceChange = (event: any) => {
+    const newMaxPrice = parseInt(event.target.value, 10);
+    if (!isNaN(newMaxPrice) && newMaxPrice >= minPrice) {
+      setMaxPrice(newMaxPrice);
+    }
   };
 
   const {
-    data: allProudcts,
+    data: defaultProducts,
     isLoading,
     isError,
   } = useGetAllProudctCategoryNameQuery(products);
-
-  const productData = allProudcts?.data?.data;
 
   //category loaded
   const { data: categoryData } = useGetAllCategoryBySlugQuery(products);
@@ -70,6 +85,23 @@ export default function AllProducts() {
       options: categories,
     },
   ];
+
+  const { data: filteredProducts } = useGetFilteredAndSortedProductsQuery({
+    sortBy,
+  });
+
+   const { data: filteredByPriceProducts } = useGetFilteredByPriceProductsQuery({minPrice,maxPrice});
+
+ console.log(filteredByPriceProducts, "this i ")
+
+  const { data: filteredByPriceAndSortedProducts } =
+    useGetFilteredByPriceAndSortedProductsQuery({
+      sortBy,
+    });
+
+  useEffect(() => {
+    setSortBy("name"); // Set the default sorting order
+  }, []);
 
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
@@ -188,21 +220,25 @@ export default function AllProducts() {
 
                     <div className="p-4 border border-gray-300 rounded shadow-lg">
                       <h2 className="text-lg font-semibold">Filter by Price</h2>
-                      <div className="mt-2 space-y-2">
+                      <div className="flex items-center flex-col">
                         <input
+                          id="min-price"
                           type="number"
-                          placeholder="Min Price"
-                          value={minPrice}
-                          onChange={(e) => setMinPrice(e.target.value)}
-                          className="w-1/2 p-2 border border-gray-300 rounded"
+                          min="0"
+                          max={maxPrice}
+                          
+                          onChange={handleMinPriceChange}
+                          className="w-32 p-2 border border-gray-300 rounded text-center"
                         />
-                        <span className="text-gray-600">to</span>
+                        <span className="text-gray-500">TO</span>
                         <input
+                          id="max-price"
                           type="number"
-                          placeholder="Max Price"
-                          value={maxPrice}
-                          onChange={(e) => setMaxPrice(e.target.value)}
-                          className="w-1/2 p-2 border border-gray-300 rounded"
+                          min={minPrice}
+                          max="100"
+                        
+                          onChange={handleMaxPriceChange}
+                          className="w-32 p-2 border border-gray-300 rounded text-center"
                         />
                       </div>
                       {/* Display filtered results here */}
@@ -243,7 +279,7 @@ export default function AllProducts() {
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
-                      {sortOptions.map((option) => (
+                      {sortOptions?.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
                             <a
@@ -287,26 +323,32 @@ export default function AllProducts() {
               <form className="   hidden lg:block lg:col-span-1">
                 <div className="w-full">
                   <h2 className="text-lg font-semibold">Filter by Price</h2>
-                  <div className="mt-2 space-y-2">
-                    <input
-                      type="number"
-                      placeholder="Min Price"
-                      value={minPrice}
-                      onChange={(e) => setMinPrice(e.target.value)}
-                      className=" p-2 w-full border border-gray-300 rounded"
-                    />
-                    <p className="text-gray-600 text-center">to</p>
-                    <input
-                      type="number"
-                      placeholder="Max Price"
-                      value={maxPrice}
-                      onChange={(e) => setMaxPrice(e.target.value)}
-                      className=" p-2  w-full border border-gray-300 rounded"
-                    />
+                  <div className="bg-gray-100 p-4 rounded-md">
+                    <div className="flex items-center flex-col">
+                      <input
+                        id="min-price"
+                        type="number"
+                        min="0"
+                        max={maxPrice}
+                        value={minPrice}
+                        onChange={handleMinPriceChange}
+                        className="w-32 p-2 border border-gray-300 rounded text-center"
+                      />
+                      <span className="text-gray-500">TO</span>
+                      <input
+                        id="max-price"
+                        type="number"
+                        min={minPrice}
+                        max="100"
+                        value={maxPrice}
+                        onChange={handleMaxPriceChange}
+                        className="w-32 p-2 border border-gray-300 rounded text-center"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                {filters.map((section) => (
+                {filters?.map((section) => (
                   <Disclosure
                     as="div"
                     key={section.id}
@@ -336,7 +378,7 @@ export default function AllProducts() {
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
-                            {section.options.map(
+                            {section?.options?.map(
                               (option: any, optionIdx: number) => (
                                 <div
                                   key={option.value}
@@ -368,31 +410,15 @@ export default function AllProducts() {
               {/* Product grid */}
               <div className=" lg:col-span-4 col-span-5  grid  w-full grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4">
                 {" "}
-                {productData.map((product: any) => (
-                  <>
-                    <div className=" border-gray-100  ">
-                      <div className="relative h-[200px]  ">
-                        <Image
-                          width={100}
-                          height={100}
-                          src={product?.thumbnail}
-                          alt=""
-                          className="absolute inset-0 h-full w-full object-cover opacity-100 group-hover:opacity-0"
-                        />
-                      </div>
-                      <div className="relative  border-gray-100 bg-white p-2">
-                        <h3 className="mt-4  capitalize text-lg font-medium text-gray-900">
-                          {product?.name}
-                        </h3>
-
-                        <p className="mt-1.5 text-sm text-gray-700"> </p>
-                      </div>
-                      <button className="  w-full  bg-red-500 border border-primary rounded text-black bg-primary p-3 text-sm font-medium transition hover:scale-105">
-                        View Dettails
-                      </button>
-                    </div>
-                  </>
-                ))}
+                <ProductCard
+                  products={
+                    filteredByPriceAndSortedProducts ||
+                    (minPrice !== 0 || maxPrice !== 1000000000
+                      ? filteredByPriceProducts
+                      : filteredProducts) ||
+                    defaultProducts
+                  }
+                ></ProductCard>
               </div>
             </div>
           </section>
