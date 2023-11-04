@@ -2,13 +2,18 @@ import { api } from "../apiSlice";
 
 export const products = api.injectEndpoints({
   endpoints: (builder) => ({
+
+    ///latest  product for home
     GetLatestProuct: builder.query({
       query: (tags) => `/products?tags=${tags}`,
     }),
+
+
+    ///get all products by category name
     GetAllProudctCategoryName: builder.query({
       query: (name) => `/products?category=${name}`,
     }),
-
+//filltaring start here 
     getFilteredAndSortedProducts: builder.query({
       query: ({ sortBy }) => {
         return `/products?sortBy=${sortBy}`;
@@ -31,6 +36,8 @@ export const products = api.injectEndpoints({
       query: (tags) => `/products?tags=${tags}`,
     }),
 
+
+    //singel product get 
     GetAllproductBySlugName: builder.query({
       query: (slug) => `/products/${slug}`,
     }),

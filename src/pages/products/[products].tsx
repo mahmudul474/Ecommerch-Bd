@@ -92,7 +92,7 @@ export default function AllProducts() {
 
    const { data: filteredByPriceProducts } = useGetFilteredByPriceProductsQuery({minPrice,maxPrice});
 
- console.log(filteredByPriceProducts, "this i ")
+  
 
   const { data: filteredByPriceAndSortedProducts } =
     useGetFilteredByPriceAndSortedProductsQuery({
@@ -412,10 +412,7 @@ export default function AllProducts() {
                 {" "}
                 <ProductCard
                   products={
-                    filteredByPriceAndSortedProducts ||
-                    (minPrice !== 0 || maxPrice !== 1000000000
-                      ? filteredByPriceProducts
-                      : filteredProducts) ||
+                   
                     defaultProducts
                   }
                 ></ProductCard>

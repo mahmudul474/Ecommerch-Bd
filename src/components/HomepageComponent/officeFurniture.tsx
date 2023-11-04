@@ -6,6 +6,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useGetALLOfficsCategoryQuery } from "@/redux/api/CategoryApi/category";
 import LoadingSpinner from "../shared/LoadingSpinner/LoadingSpinner";
+import Link from "next/link";
 
 
 
@@ -77,7 +78,7 @@ export default function OfficeFurniture({
 {data?.data?.categories.map((category:any, index:number) => (
        
        
-       
+       <Link href={`/products/${category.name.toLowerCase()}`}> 
        <>
        <div key={category._id}  className="flex justify-center   items-center flex-col">
        <div className="w-[300px]  h-[300px] ">
@@ -112,7 +113,7 @@ export default function OfficeFurniture({
            </button>
          </div>
        </div>
-     </>
+     </></Link>
         
         ))}
         
