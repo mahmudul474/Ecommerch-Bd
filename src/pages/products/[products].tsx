@@ -90,9 +90,10 @@ export default function AllProducts() {
     sortBy,
   });
 
-   const { data: filteredByPriceProducts } = useGetFilteredByPriceProductsQuery({minPrice,maxPrice});
-
-  
+  const { data: filteredByPriceProducts } = useGetFilteredByPriceProductsQuery({
+    minPrice,
+    maxPrice,
+  });
 
   const { data: filteredByPriceAndSortedProducts } =
     useGetFilteredByPriceAndSortedProductsQuery({
@@ -226,7 +227,6 @@ export default function AllProducts() {
                           type="number"
                           min="0"
                           max={maxPrice}
-                          
                           onChange={handleMinPriceChange}
                           className="w-32 p-2 border border-gray-300 rounded text-center"
                         />
@@ -236,7 +236,6 @@ export default function AllProducts() {
                           type="number"
                           min={minPrice}
                           max="100"
-                        
                           onChange={handleMaxPriceChange}
                           className="w-32 p-2 border border-gray-300 rounded text-center"
                         />
@@ -410,12 +409,7 @@ export default function AllProducts() {
               {/* Product grid */}
               <div className=" lg:col-span-4 col-span-5  grid  w-full grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4">
                 {" "}
-                <ProductCard
-                  products={
-                   
-                    defaultProducts
-                  }
-                ></ProductCard>
+                <ProductCard products={defaultProducts}></ProductCard>
               </div>
             </div>
           </section>

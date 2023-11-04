@@ -33,6 +33,7 @@
 
 .card:hover .title {
   outline: 0 none;
+  padding-bottom: 10px;
   text-decoration: none;
   color: #0072bb !important;
 }
@@ -42,9 +43,10 @@
   
         height: 56px;
         width: 65px;
-        margin: 30px auto ;
+        margin:  auto ;
         text-align: center;
         display: block;
+        margin-bottom: 30px;
 
     
 }
