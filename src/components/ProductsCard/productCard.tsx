@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ProductCard({ products }: any) {
   const productData = products?.data?.data;
-
-console.log(products)
+ 
 
 
   return (
@@ -28,9 +28,11 @@ console.log(products)
 
               <p className="mt-1.5 text-sm text-gray-700"> </p>
             </div>
+           
+           <Link   href={`/product/${product?.slug}`}>
             <button className="  w-full  bg-red-500 border border-primary rounded text-black bg-primary p-3 text-sm font-medium transition hover:scale-105">
               View Dettails
-            </button>
+            </button></Link>
           </div>
         </>
       ))}

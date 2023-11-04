@@ -30,6 +30,10 @@ export const products = api.injectEndpoints({
     GetAllproductByCategoryTag: builder.query({
       query: (tags) => `/products?tags=${tags}`,
     }),
+
+    GetAllproductBySlugName: builder.query({
+      query: (slug) => `/products/${slug}`,
+    }),
   }),
 });
 
@@ -39,5 +43,6 @@ export const {
   useGetAllproductByCategoryTagQuery,
   useGetFilteredAndSortedProductsQuery,
   useGetFilteredByPriceProductsQuery,
-  useGetFilteredByPriceAndSortedProductsQuery
+  useGetFilteredByPriceAndSortedProductsQuery,
+  useGetAllproductBySlugNameQuery
 } = products;

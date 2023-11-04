@@ -1,7 +1,19 @@
 import Layout from "@/components/Layots/RootLayot";
+import { useGetAllproductBySlugNameQuery } from "@/redux/api/ProductApi/products";
+import { useRouter } from "next/router";
 import React from "react";
 
 export default function ProductDittails() {
+  const router = useRouter();
+  const { slugName} = router.query;
+
+ const {data, isLoading,isError}=useGetAllproductBySlugNameQuery(slugName)
+
+
+console.log(data)
+
+
+
   return (
     <div className="bg-white ">
       <div className="container grid  py-10 grid-cols-1 lg:grid-cols-2 gap-6 ">
