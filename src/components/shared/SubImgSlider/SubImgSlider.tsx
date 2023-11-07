@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
@@ -26,7 +27,10 @@ const SubImgSlider: React.FC<SubImgSliderProps> = ({ images, handleSubimgShow })
       <div className="flex overflow-hidden">
         {images.slice(startIndex, startIndex + 4).map((imageUrl, index) => (
           <div key={index} className="mx-2">
-            <img
+            <Image
+            width={100}
+            height={128}
+
               onClick={() => handleSubimgShow(imageUrl)}
               className="object-cover cursor-pointer w-full h-32"
               src={imageUrl}
