@@ -23,7 +23,6 @@ export default function OfficeFurniture({
  
 
 
- console.log(data?.data)
 
 
 
@@ -80,7 +79,7 @@ export default function OfficeFurniture({
        
        <Link href={`/products/${category.name.toLowerCase()}`}> 
        <>
-       <div key={category._id}  className="flex justify-center   items-center flex-col">
+       <div key={index}  className="flex justify-center   items-center flex-col">
        <div className="w-[300px]  h-[300px] ">
   <Image
     width={300}
