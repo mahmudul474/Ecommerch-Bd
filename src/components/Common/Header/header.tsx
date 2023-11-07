@@ -31,11 +31,8 @@ export default function Header() {
     {
       label: 'Living ',
       subMenu: [
-        { label: 'All Sofa Collections', link: '/product1' },
-        { label: 'Fabric Sofa', link: '/product2' },
-        { label: 'Wooden Sofa', link: '/product3' },
-        { label: 'L-Shaped Sofa', link: '/product4' },
-        { label: 'Sofa-Bed', link: '/product5' },
+        { label: 'All Sofa ', link: '/product1' },
+       
         // Add more sub-menu items
       ],
     },
@@ -107,7 +104,7 @@ export default function Header() {
       label: 'Offics',
       subMenu: [
         { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: 'Service fdfdf dfdfd sdsd sd asd sd ', link: '/service2' },
         // Add more sub-menu items
       ],
     },
@@ -196,21 +193,7 @@ export default function Header() {
             </div>
 
             <div className="ml-2 flex">
-              <div className=" hidden lg:flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span className="text-sm font-medium ">Wishlist</span>
-              </div>
+               
 
               <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
                 <div className="relative">
@@ -241,7 +224,7 @@ export default function Header() {
           {/*bottom nav category*/}
           <div className="  hidden  lg:flex items-center justify-between">
           <nav className="menu bg-white  text-black  ">
-      <ul className="flex justify-between  space-x-7 items-center	 items-center ">
+      <ul className="flex justify-between  space-x-7 items-center	   ">
         {menuItems.map((item, index) => (
           <li
             key={index}
@@ -256,12 +239,12 @@ export default function Header() {
               {item.label}
             </a>
             {item.subMenu && showSubMenu === index && (
-              <ul className="absolute  z-50 left-0  p-4 bg-gray-800 hidden group-hover:block">
+              <ul className="absolute     z-50 left-0  p-4 bg-gray-800 lg:bg-white lg:text-black hidden group-hover:block">
                 {item.subMenu.map((subItem, subIndex) => (
                   <li key={subIndex}>
                     <a
                       href={subItem.link}
-                      className="block text-white hover:text-yellow-400"
+                      className="block text-black lg:text-black    hover:text-yellow-400"
                     >
                       {subItem.label}
                     </a>

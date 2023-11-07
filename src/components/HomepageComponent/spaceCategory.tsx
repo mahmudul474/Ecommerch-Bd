@@ -82,10 +82,9 @@ export default function SpaceCategory({
             showDots={showDots}
             responsive={responsive}
             ssr={ssr}
-          
             infinite={true}
-            autoPlay={deviceType !== "mobile" ? true : false}
-            autoPlaySpeed={3000}
+            autoPlay={true}
+            autoPlaySpeed={5000}
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}

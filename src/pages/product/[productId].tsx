@@ -1,39 +1,70 @@
 import Layout from "@/components/Layots/RootLayot";
+import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
+import SubImgSlider from "@/components/shared/SubImgSlider/SubImgSlider";
 import { useGetAllproductBySlugNameQuery } from "@/redux/api/ProductApi/products";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 export default function ProductDittails() {
   const router = useRouter();
-  const { slugName} = router.query;
+  const { productId } = router.query;
 
- const {data, isLoading,isError}=useGetAllproductBySlugNameQuery(slugName)
+  const { data, isLoading, isError } =
+    useGetAllproductBySlugNameQuery(productId);
+  const product = data?.data;
 
+  const [subimageUrl, setSubImgUrl] = useState<string>("");
+  /// img    slider
+  const handleSubimgShow = (subimgUrl: string) => {
+    setSubImgUrl(subimgUrl);
+  };
 
-console.log(data)
+  const calculateDiscountedPrice = () => {
+    if (product?.discountType === "fixed") {
+      return product?.price - product?.discountValue;
+    } else if (product?.discountType === "percentage") {
+      const discountAmount = (product?.price * product?.discountValue) / 100;
+      return product?.price - discountAmount;
+    }
+    return product?.price;
+  };
+  const discountPrices = calculateDiscountedPrice();
 
-
+  if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
 
   return (
-    <div className="bg-white ">
+    <div className="bg-white px-7 ">
       <div className="container grid  py-10 grid-cols-1 lg:grid-cols-2 gap-6 ">
         <div className="w-full ">
-          <img
-            className="w-full"
-            src="https://i0.wp.com/dreamtouch-bd.com/wp-content/uploads/2023/02/Showroom-Interior-Design.png?resize=600%2C438&ssl=1"
-          />
+         
 
-          <div className=" gap-4 grid grid-cols-5 pt-5 ">
-            <img src="https://i0.wp.com/dreamtouch-bd.com/wp-content/uploads/2023/02/Hospital-Interior-Designl.png?resize=600%2C438&ssl=1" />
-            <img src="https://i0.wp.com/dreamtouch-bd.com/wp-content/uploads/2023/02/Hospital-Interior-Designl.png?resize=600%2C438&ssl=1" />
-            <img src="https://i0.wp.com/dreamtouch-bd.com/wp-content/uploads/2023/02/Landscape-Design.png?resize=600%2C438&ssl=1" />
-            <img src="https://i0.wp.com/dreamtouch-bd.com/wp-content/uploads/2023/02/Landscape-Design.png?resize=600%2C438&ssl=1" />
-            <img src="https://i0.wp.com/dreamtouch-bd.com/wp-content/uploads/2023/02/Landscape-Design.png?resize=600%2C438&ssl=1" />
+          <div className="sticky top-0 z-0 overflow-hidden ">
+            <div className="relative  lg:mb-10 h-[450px]">
+              {subimageUrl ? (
+                <img
+                  src={subimageUrl}
+                  alt=""
+                  className="  object-contain  w-full h-full  "
+                />
+              ) : (
+                <img
+                  src={product?.thumbnail}
+                  alt=""
+                  className=" h-full   object-contain  w-full   "
+                />
+              )}
+            </div>
+            <SubImgSlider
+                  handleSubimgShow={handleSubimgShow}
+                  images={product&& product.images}
+                ></SubImgSlider>
           </div>
         </div>
         <div className="w-full ">
           <h2 className="text-3xl font-medium  text-black uppercase mb-3">
-            Residence Interior
+            {product?.name}
           </h2>
 
           <div className="space-y-2">
@@ -43,133 +74,30 @@ console.log(data)
               </span>
               <span className="text-green-800"> In Stock</span>
             </p>
-            <p className="text-grey-800 font-semibold">
-              <span className="text-gray-700 font-semibold space-x-2">
-                Brand :
-              </span>
-              <span className="text-black "> Dtal</span>
-            </p>
+
             <p className="text-grey-800 font-semibold">
               <span className="text-gray-700 font-semibold space-x-2">
                 Category:
               </span>
-              <span className="text-black "> Shofa</span>
+              <span className="text-black  capitalize">
+                {product?.category?.name}
+              </span>
             </p>
           </div>
 
-          <div className="flex mb-4">
-            <span className="flex items-center">
-              <svg
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-4 h-4 text-red-500"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-4 h-4 text-red-500"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-4 h-4 text-red-500"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-4 h-4 text-red-500"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-4 h-4 text-red-500"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <span className="text-gray-600 ml-3">4 Reviews</span>
-            </span>
-            <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-              <a className="text-gray-500">
-                <svg
-                  fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                </svg>
-              </a>
-              <a className="ml-2 text-gray-500">
-                <svg
-                  fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                </svg>
-              </a>
-              <a className="ml-2 text-gray-500">
-                <svg
-                  fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                </svg>
-              </a>
-            </span>
-          </div>
           <p className="leading-relaxed text-black ">
-            Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-            sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-            juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-            seitan poutine tumeric. Gastropub blue bottle austin listicle
-            pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.
+            <div
+              dangerouslySetInnerHTML={{ __html: product?.short_description }}
+            />
           </p>
           <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-            <div className="flex">
+            {/* <div className="flex">
               <span className="mr-3">Color</span>
               <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
               <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
               <button className="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
-            </div>
-            <div className="flex ml-6 bg-white items-center">
+            </div> */}
+            {/* <div className="flex ml-6 bg-white items-center">
               <span className="mr-3">Size</span>
               <div className="relative">
                 <select className="rounded border appearance-none border-gray-400 py-2 focus:outline-none bg-white text-black  focus:border-red-500 text-base pl-3 pr-10">
@@ -192,7 +120,7 @@ console.log(data)
                   </svg>
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="flex items-center border-gray-100 text-black text-xl py-3">
             {" "}
@@ -213,12 +141,20 @@ console.log(data)
             </span>
           </div>
           <div className="flex">
-            <span className="title-font font-medium text-2xl text-gray-900">
-              $58.00
+            <span className="title-font flex   font-medium text-2xl text-gray-900">
+              ৳
+              {product?.discountType && product.discountAmount ? (
+                <p>
+                  {" "}
+                  <s>{product?.price}</s> <span>{discountPrices}</span>
+                </p>
+              ) : (
+                <p>{product?.price}</p>
+              )}
             </span>
           </div>
           <div className="flex justify-start  py-5 items-center">
-            <button className=" rounded p-3 text-white    bg-primary  border-0 inline-flex items-center justify-center  border-primary   hover:text-primary hover:bg-transparent  ">
+            <button className=" rounded p-3 text-black    bg-red-500  border-0 inline-flex items-center justify-center  border-primary   hover:text-primary hover:bg-transparent  ">
               Add To Cart
             </button>
             <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -244,26 +180,8 @@ console.log(data)
 
         <div className="w-3/5 pt-6">
           <div className="text-gray-600 space-y-3">
-            <p>
-              When it comes to enhancing productivity and fostering creativity,
-              the office interior design of an office plays a vital role. A
-              well-designed workspace can significantly impact employee
-              satisfaction and overall efficiency. In Bangladesh,
-            </p>
-            <p>
-              Efficient space planning ensures that the office layout is
-              functional and conducive to productivity. Adequate space for
-              collaboration, private workstations, and designated meeting areas
-              are essential aspects of a well-designed office.
-            </p>
-            <p>
-              In today’s digital age, integrating technology into office design
-              is fundamental. This includes incorporating smart devices,
-              interactive whiteboards, and seamless connectivity to improve
-              communication and workflow.
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: product?.description }} />
           </div>
-
         </div>
       </div>
     </div>
