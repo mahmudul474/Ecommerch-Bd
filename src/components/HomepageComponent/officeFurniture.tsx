@@ -22,7 +22,7 @@ export default function OfficeFurniture({
   const { data, error, isLoading } = useGetALLOfficsCategoryQuery("office");
  
 
-
+const categoryData=data?.data?.categories
 
 
 
@@ -74,12 +74,12 @@ export default function OfficeFurniture({
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-{data?.data?.categories.map((category:any, index:number) => (
+{categoryData.map((category:any, index:number) => (
        
        
        <Link href={`/products/${category.name.toLowerCase()}`}> 
        <>
-       <div key={index}  className="flex justify-center   items-center flex-col">
+       <div key={category._id}  className="flex justify-center   items-center flex-col">
        <div className="w-[300px]  h-[300px] ">
   <Image
     width={300}

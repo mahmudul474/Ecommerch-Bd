@@ -74,7 +74,7 @@ export default function HomePageAllCategory({
 >
 {data?.data?.categories.map((category:any, index:number) => (
   <Link href={`/products/${category.name.toLowerCase()}`}>
- es
+
  <div key={category?._id} className={styles.card}>
     <p   className={styles.imgContainer}>
       <Image

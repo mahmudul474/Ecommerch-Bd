@@ -37,6 +37,9 @@ export default function LatestProduct({
     },
   };
 
+const proucductData=data?.data?.data
+
+
   return (
     <div className="px-4 py-5 mx-auto">
       <h1 className="m-5 text-center text-2xl font-bold">Latest Products</h1>
@@ -61,7 +64,7 @@ export default function LatestProduct({
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {data?.data?.data?.map((product: any) => (
+            {proucductData?.map((product: any) => (
               <div
                 key={product?._id}
                 className="group relative   cursor-pointer  block overflow-hidden m-5"
