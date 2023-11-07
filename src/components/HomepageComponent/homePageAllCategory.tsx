@@ -73,9 +73,9 @@ export default function HomePageAllCategory({
   itemClass="carousel-item-padding-40-px"
 >
 {data?.data?.categories.map((category:any, index:number) => (
-  <Link href={`/products/${category.name.toLowerCase()}`}>
-
- <div key={category?._id} className={styles.card}>
+  <Link  key={category?._id} href={`/products/${category.name.toLowerCase()}`}>
+ 
+ <div className={styles.card}>
     <p   className={styles.imgContainer}>
       <Image
         layout="responsive"
