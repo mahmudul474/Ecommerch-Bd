@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function WhyDreamTuch() {
@@ -10,7 +11,9 @@ export default function WhyDreamTuch() {
       <div className="grid  my-10 grid-cols-1  gap-10  md:grid-cols-2 lg:grid-cols-3">
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col mt-3 text-center items-center pb-10">
-            <img
+            <Image
+            width={24}
+            height={24}
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src="http://otobi.com/images/customer_care.png"
               alt="Bonnie image"
@@ -26,7 +29,9 @@ export default function WhyDreamTuch() {
 
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col mt-3 text-center  items-center pb-10">
-            <img
+            <Image
+            width={24}
+            height={24}
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src="http://otobi.com/images/delivery.png"
               alt="Bonnie image"
@@ -42,7 +47,9 @@ export default function WhyDreamTuch() {
 
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col mt-3 text-center items-center pb-10">
-            <img
+            <Image
+            width={24}
+            height={24}
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src="http://otobi.com/images/easy_payment.png"
               alt="Bonnie image"
@@ -58,7 +65,9 @@ export default function WhyDreamTuch() {
 
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col mt-3 text-center items-center pb-10">
-            <img
+            <Image 
+            width={24}
+            height={24}
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src="http://otobi.com/images/after_sales.png"
               alt="Bonnie image"
@@ -74,7 +83,9 @@ export default function WhyDreamTuch() {
 
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col mt-3 text-center items-center pb-10">
-            <img
+            <Image
+            width={24}
+            height={24}
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src="http://otobi.com/images/warranty.png"
               alt="Bonnie image"
@@ -89,7 +100,9 @@ export default function WhyDreamTuch() {
         </div>
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col mt-3 text-center items-center pb-10">
-            <img
+            <Image
+            width={24}
+            height={24}
               className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src="http://otobi.com/images/after_sales.png"
               alt="Bonnie image"
