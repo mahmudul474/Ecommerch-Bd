@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
   
-    domains: ['i.ibb.co',"hatil.com",'kb-corporetion.s3.ap-southeast-1.amazonaws.com']
+    domains: ['i.ibb.co','otobi.com',"hatil.com",'kb-corporetion.s3.ap-southeast-1.amazonaws.com']
   },
  
 }

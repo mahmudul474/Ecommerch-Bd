@@ -7,7 +7,10 @@ interface SubImgSliderProps {
   handleSubimgShow: (imageUrl: string) => void;
 }
 
-const SubImgSlider: React.FC<SubImgSliderProps> = ({ images, handleSubimgShow }) => {
+const SubImgSlider: React.FC<SubImgSliderProps> = ({
+  images,
+  handleSubimgShow,
+}) => {
   const [startIndex, setStartIndex] = useState(0);
 
   const handlePrevImages = () => {
@@ -28,9 +31,8 @@ const SubImgSlider: React.FC<SubImgSliderProps> = ({ images, handleSubimgShow })
         {images.slice(startIndex, startIndex + 4).map((imageUrl, index) => (
           <div key={index} className="mx-2">
             <Image
-            width={100}
-            height={128}
-
+              width={100}
+              height={128}
               onClick={() => handleSubimgShow(imageUrl)}
               className="object-cover cursor-pointer w-full h-32"
               src={imageUrl}
