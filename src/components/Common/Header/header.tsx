@@ -5,13 +5,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 export default function Header() {
-  
- 
-  
- 
-
-  
-
   //sidebar  mobile screen
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const handleToggleSidebar = () => {
@@ -19,125 +12,165 @@ export default function Header() {
     console.log("sidebar is open ");
   };
 
-
-
- 
-
   const menuItems = [
     {
-      label: 'New',
-      link: '/',
+      label: "New",
+      link: "/",
     },
     {
-      label: 'Living ',
+      label: "Living ",
+      subMenu: [{ label: "Bed", link: "/product1", category: [] }],
+    },
+    {
+      label: "Bedroom",
       subMenu: [
-        { label: 'All Sofa ', link: '/product1' },
-       
+        {
+          label: "Bed",
+          link: "#",
+          category: [
+            {
+              label: "Super Bed",
+            },
+            {
+              label: "Latest-bed",
+            },
+            {
+              label: "Super Bed",
+            },
+          ],
+        },
+        {
+          label: "Service ",
+          link: "/service1",
+          category: [
+            {
+              label: "Super Bed",
+            },
+            {
+              label: "Latest-bed",
+            },
+            {
+              label: "Super Bed",
+            },
+          ],
+        },
+        { label: "Service", link: "/service2" },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
+        { label: "Service ", link: "/service1" },
+        {
+          label: "Service",
+          link: "/service2",
+          category: [
+            {
+              label: "Super Bed",
+            },
+            {
+              label: "Latest-bed",
+            },
+            {
+              label: "Super Bed",
+            },
+          ],
+        },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
+      ],
+    },
+    {
+      label: "Dining ",
+      subMenu: [
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Bedroom',
+      label: "Kitchen",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Dining ',
+      label: "KidsRoom",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Kitchen',
+      label: "SmartFit",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'KidsRoom',
+      label: "Institutional",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'SmartFit',
+      label: "Door",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Institutional',
+      label: "Interior",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Door',
+      label: "Offics",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service fdfdf dfdfd sdsd sd asd sd ", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Interior',
+      label: "Hospital",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Offics',
+      label: "SmartFit",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service fdfdf dfdfd sdsd sd asd sd ', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
     {
-      label: 'Hospital',
+      label: "Allied",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
+
     {
-      label: 'SmartFit',
+      label: "Interior",
       subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: 'Allied',
-      subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
-        // Add more sub-menu items
-      ],
-    },
-    
-    {
-      label: 'Interior',
-      subMenu: [
-        { label: 'Service ', link: '/service1' },
-        { label: 'Service', link: '/service2' },
+        { label: "Service ", link: "/service1" },
+        { label: "Service", link: "/service2" },
         // Add more sub-menu items
       ],
     },
@@ -147,7 +180,7 @@ export default function Header() {
   const [showSubMenu, setShowSubMenu] = useState(null);
 
   // Functions to handle menu hover and timeouts
-  const handleMouseEnter = (index:any) => {
+  const handleMouseEnter = (index: any) => {
     setShowSubMenu(index);
   };
 
@@ -155,8 +188,6 @@ export default function Header() {
     setShowSubMenu(null);
   };
 
-  
-  
   return (
     <div>
       <div className="hidden lg:block">
@@ -175,7 +206,7 @@ export default function Header() {
 
             <div className="flex items-center">
               <Link href="/" className="">
-                <Image layout="responsive" src={logo} alt="logo"  />
+                <Image layout="responsive" src={logo} alt="logo" />
               </Link>
             </div>
 
@@ -186,15 +217,25 @@ export default function Header() {
                 placeholder="search"
               />
               <span className="  absolute right-3">
-              <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
                 </svg>
               </span>
             </div>
 
             <div className="ml-2 flex">
-               
-
               <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
                 <div className="relative">
                   <svg
@@ -210,54 +251,57 @@ export default function Header() {
                   </span>
                 </div>
 
-
-                <Link  href="/cart">
-                <span className="text-sm font-medium">Cart</span>
-                </Link></div>
+                <Link href="/cart">
+                  <span className="text-sm font-medium">Cart</span>
+                </Link>
+              </div>
 
               <div className="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border   hover:bg-gray-100">
-              <Link href="/login">
-                <span className="text-sm font-medium">Sign in</span>
-                </Link> </div>
+                <Link href="/login">
+                  <span className="text-sm font-medium">Sign in</span>
+                </Link>{" "}
+              </div>
             </div>
           </div>
           {/*bottom nav category*/}
           <div className="  hidden  lg:flex items-center justify-between">
-          <nav className="menu bg-white  text-black  ">
-      <ul className="flex justify-between  space-x-7 items-center	   ">
-        {menuItems.map((item, index) => (
-          <li
-            key={index}
-            className="relative group"
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-          >
-            <a
-              href={item.link}
-              className="hover:text-yellow-400"
-            >
-              {item.label}
-            </a>
-            {item.subMenu && showSubMenu === index && (
-              <ul className="absolute     z-50 left-0  p-4 bg-gray-800 lg:bg-white lg:text-black hidden group-hover:block">
-                {item.subMenu.map((subItem, subIndex) => (
-                  <li key={subIndex}>
-                    <a
-                      href={subItem.link}
-                      className="block text-black lg:text-black    hover:text-yellow-400"
-                    >
-                      {subItem.label}
+            <nav className="menu bg-white  text-black  ">
+              <ul className="flex justify-between  space-x-7 items-center	   ">
+                {menuItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className="relative group"
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <a href={item.link} className="hover:text-yellow-400">
+                      {item.label}
                     </a>
+                    {item.subMenu && showSubMenu === index && (
+                      <ul className="absolute   z-50 left-0  p-4  bg-gray-800 lg:bg-white lg:text-black hidden group-hover:block">
+                        <div className="  w-96 overflow-hidden grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+                          {item.subMenu.map((subItem, subIndex) => (
+                            <>
+              
+                              <li key={subIndex}>{subItem.label}</li>
+                              <div>
+                                {subItem?.category?.map((cat) => (
+                                  <p>{cat?.label}</p>
+                                ))}
+                              </div>
+                            </>
+                          ))}
+                        </div>
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-    </nav> 
-           
+            </nav>
           </div>
+
+ 
+
         </div>
       </div>
       {/*responshipe input*/}
@@ -286,51 +330,38 @@ export default function Header() {
         </span>
 
         <aside className="w-full z-50 p-6 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
-
           <nav className="space-y-8  z-50  text-sm">
-            
-          <ul className="flex flex-col  items-start  space-y-4">
-        {menuItems.map((item, index) => (
-          <li
-            key={index}
-            className="relative group"
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={handleMouseLeave}
-          >
-            <a
-              href={item.link}
-              className="hover:text-yellow-400"
-            >
-              {item.label}
-            </a>
-            {item.subMenu && showSubMenu === index && (
-              <ul className="absolute  z-50 left-0  p-4 bg-gray-800 hidden group-hover:block">
-                {item.subMenu.map((subItem, subIndex) => (
-                  <li key={subIndex}>
-                    <a
-                      href={subItem.link}
-                      className="block text-white hover:text-yellow-400"
-                    >
-                      {subItem.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>  
-            
+            <ul className="flex flex-col  items-start  space-y-4">
+              {menuItems.map((item, index) => (
+                <li
+                  key={index}
+                  className="relative group"
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a href={item.link} className="hover:text-yellow-400">
+                    {item.label}
+                  </a>
+                  {item.subMenu && showSubMenu === index && (
+                    <ul className="absolute  z-50 left-0  p-4 bg-gray-800 hidden group-hover:block">
+                      {item.subMenu.map((subItem, subIndex) => (
+                        <li key={subIndex}>
+                          <a
+                            href={subItem.link}
+                            className="block text-white hover:text-yellow-400"
+                          >
+                            {subItem.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
           </nav>
         </aside>
       </div>
     </div>
   );
 }
-
-
-
-
-
-
- 

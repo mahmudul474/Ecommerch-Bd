@@ -44,9 +44,9 @@ export default function Register() {
 
   return (
     <div>
-      <section className="bg-gray-50  ">
-        <div className="flex flex-col items-center justify-center px-6 py- mx-auto md:h-screen lg:py-0">
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <section className=" my-20  ">
+        <div className="flex flex-col items-center justify-center px-6 py- mx-auto   lg:py-0">
+          <div className="w-full bg-white  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
                 Create and account
@@ -229,7 +229,7 @@ export default function Register() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full  bg-primary  text-black hover:border  hover:border-primary rounded-lg hover:bg-transparent   font-medium   text-sm px-5 py-2.5 text-center  "
+                  className="w-full  border  border-black    text-black      rounded-lg hover:bg-transparent   font-medium   text-sm px-5 py-2.5 text-center  "
                 >
                   SingUp
                 </button>
