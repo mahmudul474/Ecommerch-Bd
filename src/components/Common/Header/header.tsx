@@ -281,15 +281,15 @@ export default function Header() {
                       <ul className="absolute   z-50 left-0  p-4  bg-gray-800 lg:bg-white lg:text-black hidden group-hover:block">
                         <div className="  w-96 overflow-hidden grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
                           {item.subMenu.map((subItem, subIndex) => (
-                            <>
+                            <div key={subIndex}>
               
-                              <li key={subIndex}>{subItem.label}</li>
+                              <li  >{subItem.label}</li>
                               <div>
                                 {subItem?.category?.map((cat) => (
                                   <p>{cat?.label}</p>
                                 ))}
                               </div>
-                            </>
+                            </div>
                           ))}
                         </div>
                       </ul>

@@ -2,6 +2,7 @@ import Layout from "@/components/Layots/RootLayot";
 import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
 import SubImgSlider from "@/components/shared/SubImgSlider/SubImgSlider";
 import { useGetAllproductBySlugNameQuery } from "@/redux/api/ProductApi/products";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -43,13 +44,13 @@ export default function ProductDittails() {
           <div className="sticky top-0 z-0 overflow-hidden ">
             <div className="relative  lg:mb-10 h-[450px]">
               {subimageUrl ? (
-                <img
+                <Image  alt="img " width={100} height={100}
                   src={subimageUrl}
-                  alt=""
+                   
                   className="  object-contain  w-full h-full  "
                 />
               ) : (
-                <img
+                <Image width={100} height={100}
                   src={product?.thumbnail}
                   alt=""
                   className=" h-full   object-contain  w-full   "

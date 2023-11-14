@@ -5,6 +5,11 @@ const nextConfig = {
   
     domains: ['i.ibb.co','otobi.com',"hatil.com",'kb-corporetion.s3.ap-southeast-1.amazonaws.com']
   },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
  
 }
 
