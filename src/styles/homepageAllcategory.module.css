@@ -33,7 +33,7 @@
 
 .card:hover .title {
   outline: 0 none;
-  padding-bottom: 10px;
+  
   text-decoration: none;
   color: #0072bb !important;
 }
@@ -47,6 +47,7 @@
         text-align: center;
         display: block;
         margin-bottom: 30px;
+        object-fit: "covered";
 
     
 }
