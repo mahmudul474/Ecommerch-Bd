@@ -1,10 +1,11 @@
  import { axiosBaseQuery } from '@/helperConfige/axios/axiosBaseQuery'
+import { getBaseUrl } from '@/helperConfige/envConfige'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
  
  
 export const user = createApi({
   reducerPath: 'user',
-  baseQuery: axiosBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+  baseQuery: axiosBaseQuery({ baseUrl: getBaseUrl() }),
   endpoints: (builder) => ({}),
   tagTypes:["user"]
 })

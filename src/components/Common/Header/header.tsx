@@ -4,6 +4,8 @@ import logo from "../../../assates/logo.svg";
 import { FaBars, FaTimes } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Megamenu from "./megamenu";
+import MobaileMegamenu from "./mobilemegamenu";
 export default function Header() {
   //sidebar  mobile screen
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -263,43 +265,9 @@ export default function Header() {
               </div>
             </div>
           </div>
-          {/*bottom nav category*/}
-          <div className="  hidden  lg:flex items-center justify-between">
-            <nav className="menu bg-white  text-black  ">
-              <ul className="flex justify-between  space-x-7 items-center	   ">
-                {menuItems.map((item, index) => (
-                  <li
-                    key={index}
-                    className="relative group"
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <a href={item.link} className="hover:text-yellow-400">
-                      {item.label}
-                    </a>
-                    {item.subMenu && showSubMenu === index && (
-                      <ul className="absolute   z-50 left-0  p-4  bg-gray-800 lg:bg-white lg:text-black hidden group-hover:block">
-                        <div className="  w-96 overflow-hidden grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-                          {item.subMenu.map((subItem, subIndex) => (
-                            <div key={subIndex}>
-              
-                              <li  >{subItem.label}</li>
-                              <div>
-                                {subItem?.category?.map((cat) => (
-                                  <p>{cat?.label}</p>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
+  
+        
+<div className="hidden lg:block md:block"><Megamenu/></div>
  
 
         </div>
@@ -317,9 +285,9 @@ export default function Header() {
       <div
         className={`${
           sidebarOpen
-            ? "translate-x-0 w-56   z-50 z-50 lg:hidden"
+            ? "translate-x-0 w-full lg:hidden"
             : "-translate-x-[3000px]"
-        } bg-gray-200 w-56 h-screen z-50  fixed lg:hidden top-0 left-0 shadow-md z-50 transform transition-transform duration-300 ease-in-out`}
+        } bg-gray-200 w-full  h-screen z-50  fixed lg:hidden top-0 left-0 shadow-md z-50 transform transition-transform duration-300 ease-in-out`}
       >
         {/* Sidebar content */}
         <span
@@ -330,36 +298,7 @@ export default function Header() {
         </span>
 
         <aside className="w-full z-50 p-6 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
-          <nav className="space-y-8  z-50  text-sm">
-            <ul className="flex flex-col  items-start  space-y-4">
-              {menuItems.map((item, index) => (
-                <li
-                  key={index}
-                  className="relative group"
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a href={item.link} className="hover:text-yellow-400">
-                    {item.label}
-                  </a>
-                  {item.subMenu && showSubMenu === index && (
-                    <ul className="absolute  z-50 left-0  p-4 bg-gray-800 hidden group-hover:block">
-                      {item.subMenu.map((subItem, subIndex) => (
-                        <li key={subIndex}>
-                          <a
-                            href={subItem.link}
-                            className="block text-white hover:text-yellow-400"
-                          >
-                            {subItem.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
+        <MobaileMegamenu/>
         </aside>
       </div>
     </div>

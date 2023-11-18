@@ -10,7 +10,7 @@ import Blog from "@/components/HomepageComponent/blog";
 
 export default function HomePage() {
   return (
-    <div className="z-0">
+    <>
       <Slider></Slider>
       <HomePageAllCategory></HomePageAllCategory>
       <LatestProduct></LatestProduct>
@@ -18,7 +18,7 @@ export default function HomePage() {
       <OfficeFurniture></OfficeFurniture>
     <Blog></Blog>
       <WhyDreamTuch></WhyDreamTuch>
-    </div>
+    </>
   );
 }
 
