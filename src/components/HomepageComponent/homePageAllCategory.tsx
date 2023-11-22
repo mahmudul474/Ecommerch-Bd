@@ -26,7 +26,7 @@ export default function HomePageAllCategory() {
         settings: {
           autoplay: true,
 
-          slidesToShow: 6,
+          slidesToShow: 4,
           slidesToScroll: 7,
           infinite: true,
           dots: true,
@@ -49,8 +49,8 @@ export default function HomePageAllCategory() {
         settings: {
           Infinity: true,
           autoplay: true,
-          slidesToShow: 5,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 1,
           autoplaySpeed: 5000,
         },
       },
@@ -58,7 +58,7 @@ export default function HomePageAllCategory() {
   };
 
   return (
-    <div className="container  my-7 lg:px-3">
+    <div className="container   m-auto my-7 lg:px-3">
       <h2 className="text-3xl text-center font-bold ">
         {" "}
         Explore Oure All Category
