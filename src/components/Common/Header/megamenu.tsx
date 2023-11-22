@@ -148,17 +148,6 @@ export default function Megamenu() {
         // Add more sub-menu items
       ],
     },
-    
-   
-
-    {
-      label: "Interior",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
   ];
 
   return (
@@ -181,14 +170,14 @@ export default function Megamenu() {
                   <div
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={handleMouseLeave}
-                    className="p-6 mega-menu     mb-16 sm:mb-0 shadow-xl bg-gray-400"
+                    className="p-6 mega-menu     mb-16 sm:mb-0 shadow-xl  bg-white text-black"
                   >
                     <div className="container mx-auto w-full grid grid-rows-1 lg:grid-cols-4 md: grid-cols-3 mx-2">
                       {item.subMenu.map((subItem: any, subIndex: number) => (
                         <ul className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
                           <h3 className="font-bold text-xl text-white text-bold mb-2"></h3>
                           <li
-                              className="block p-3 text-xl capitalize  font-bold hover:bg-teal-900 text-gray-300 hover:text-white"
+                              className="block p-3 text-xl capitalize  font-bold    text-black cursor-pointer hover:text-yellow-400    "
                             >
                               {subItem.label}
                         
@@ -197,7 +186,7 @@ export default function Megamenu() {
                             subItem?.category.length > 0 &&
                             subItem?.category.map((cat: any) => (
                               <li
-                                  className="block p-3 hover:bg-teal-900 text-gray-300 hover:text-white"
+                                  className="block p-3 hover:bg-teal-900 text-black hover:text-white"
                                 >
                                   {cat.label}
                              

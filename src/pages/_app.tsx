@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <Provider store={store}>
-      <div className="max-w-[1280px] m-auto overflow-hidden">
+      <div className=" m-auto overflow-hidden">
         {getLayout(<Component {...pageProps} />)}
         <ToastContainer />
       </div>

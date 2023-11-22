@@ -189,10 +189,7 @@ const SpaceCategory = () => {
               className="border shadow-md shadow-red-100     "
             >
               <Link
-                href="/"
-
-                // href={`/categories/${category?.title.toLowerCase()}`}
-                // as={`/categories/${category?.title.toLowerCase()}`}
+                href={`/categories/${category?.slug.toLowerCase()}`}
               >
                 <div
                   key={category._id}
