@@ -68,7 +68,7 @@ const LatestProduct = () => {
  }
 
   return (
-    <div className="container px-3 my-5 overflow-hidden">
+    <div className="container px-3 my-5  m-auto overflow-hidden">
       <div className="my-4">
         <h2 className="text-3xl text-center font-bold"> Latest Products </h2>
         <p className="text-center">

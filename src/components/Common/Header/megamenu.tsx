@@ -11,14 +11,9 @@ export default function Megamenu() {
     setShowSubMenu(null);
   };
 
-
-
-
-  
-
   const menuItems = [
     {
-      label: "All Doors",
+      label: "New",
       link: "/",
     },
     {
