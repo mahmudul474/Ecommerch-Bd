@@ -234,11 +234,11 @@ export default function Products() {
           </div>
         </div>
 
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-2">
          
         
 {
-  data && data?.data?.map((product:any)=>   <div className="mx-4">
+  data && data?.data?.data.map((product:any)=>   <div className="mx-4">
   <div
     key={product?._id}
     className="border  border-gray-200 px-3 rounded-md bg-gray-50 dark:border-gray-900 rounded-b-md dark:bg-gray-900"

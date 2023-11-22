@@ -148,22 +148,8 @@ export default function Megamenu() {
         // Add more sub-menu items
       ],
     },
-    {
-      label: "SmartFit",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Allied",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
+    
+   
 
     {
       label: "Interior",
