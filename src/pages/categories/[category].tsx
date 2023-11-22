@@ -1,6 +1,6 @@
 import Layout from "@/components/Layots/RootLayot";
 import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
-import { useGetAllCategoryBySlugQuery } from "@/redux/api/CategoryApi/category";
+import { useGetCategoryBySlugNameQuery } from "@/redux/api/category/categorySlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +10,10 @@ export default function Category() {
   const router = useRouter();
   const { category } = router.query;
 
-  const { data, isLoading, isError } = useGetAllCategoryBySlugQuery(category);
+  const { data, isLoading, isError } = useGetCategoryBySlugNameQuery(category);
+
+console.log(data)
+
 
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
@@ -24,11 +27,11 @@ export default function Category() {
         </h2>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
-        {data?.data?.categories?.map((item: any) => (
+        {data?.data?.subCategories?.map((item: any) => (
           <>
             
            
-           <Link href={`/products/${item.name.toLowerCase()}`}>
+           <Link href={`/products/${item.slug.toLowerCase()}`}>
            
             <div className=" cursor-pointer shadow-md flex  justify-center flex-col  items-center">
              <div className="w-[300px]  objectFit-cover   h-[300px]">
@@ -53,6 +56,13 @@ export default function Category() {
   );
 }
 
+
+
 Category.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
+
+
+
+
+ 

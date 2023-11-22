@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Megamenu from "./megamenu";
 import MobaileMegamenu from "./mobilemegamenu";
+
 export default function Header() {
   //sidebar  mobile screen
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -239,7 +240,7 @@ export default function Header() {
 
             <div className="ml-2 flex">
               <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
-                <div className="relative">
+              <Link href="/cart">    <div className="relative">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 text-gray-500"
@@ -253,7 +254,7 @@ export default function Header() {
                   </span>
                 </div>
 
-                <Link href="/cart">
+               
                   <span className="text-sm font-medium">Cart</span>
                 </Link>
               </div>

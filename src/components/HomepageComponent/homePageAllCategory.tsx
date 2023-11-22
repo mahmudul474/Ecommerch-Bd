@@ -1,103 +1,99 @@
-import Head from "next/head";
-import Image from "next/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import React from "react";
-import Carousel from "react-multi-carousel";
-import 'react-multi-carousel/lib/styles.css';
+import Slider from "react-slick";
+import { useGetallCategoryQuery } from "@/redux/api/category/categorySlice";
+import Image from "next/image";
 import styles from "../../styles/homepageAllcategory.module.css";
-import { ICategoryInterface } from "@/Types/category";
 import Link from "next/link";
-import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
-import { useGetAllCategoryQuery } from "@/redux/api/CategoryApi/category";
 
-export default function HomePageAllCategory({
-  swipeable,
-  draggable,
-  showDots,
-  ssr,
-  infinite,
-  deviceType,
-}: any) {
-  const { data, isLoading, isError } = useGetAllCategoryQuery(undefined);
+export default function HomePageAllCategory() {
+  const { data, isLoading, isError } = useGetallCategoryQuery(undefined);
 
-  // Define different settings for smaller screens
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplaySpeed: 2000,
+    slidesToShow: 6,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    autoplay: true,
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 10,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 5,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 3,
-      slidesToSlide: 1, // optional, default to 1.
-    },
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          autoplay: true,
+
+          slidesToShow: 6,
+          slidesToScroll: 7,
+          infinite: true,
+          dots: true,
+          autoplaySpeed: 5000,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 7,
+          autoplay: true,
+          infinite: true,
+          slidesToScroll: 2,
+          initialSlide: 4,
+          autoplaySpeed: 5000,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          Infinity: true,
+          autoplay: true,
+          slidesToShow: 5,
+          slidesToScroll: 3,
+          autoplaySpeed: 5000,
+        },
+      },
+    ],
   };
 
-  if (isLoading) {
-    return <LoadingSpinner></LoadingSpinner>;
-  }
   return (
-    <div className=" my-12 px-8 bg-white">
-      <div className="flex  justify-center items-center  flex-col">
-        <h1
-          className={` ${styles.customHeading} text-2xl  font-semibold capitalize`}
-        >
-          Popular Furniture By Choice
-        </h1>
-        <p className="text-lg  font-sem">
-          Categories our customers love to check out.
-        </p>
-      </div>
-      {data && data.data && data.data.categories && data.data.categories.length > 0 && (
-  <Carousel
-  swipeable={swipeable}
-  draggable={draggable}
-  showDots={showDots}
-  responsive={responsive}
-  ssr={ssr}
-  infinite={infinite}
-  autoPlay={deviceType !== "mobile" ? true : false}
-  autoPlaySpeed={3000}
-  keyBoardControl={true}
-  customTransition="all .5"
-  transitionDuration={500}
-  containerClass="carousel-container"
-  deviceType={deviceType}
-  dotListClass="custom-dot-list-style"
-  itemClass="carousel-item-padding-40-px"
->
-{data?.data?.categories.map((category:any, index:number) => (
-  <Link  key={category?._id} href={`/products/${category.name.toLowerCase()}`}>
- 
- <div className={styles.card}>
-    <p   className={styles.imgContainer}>
-      <Image
-        layout="responsive"
-        className=" my-4"
-        width={100}
-        height={100}
-        style={{width:"100%", height:"100%"   , objectFit:"contain"}}
-        alt="category-icon"
-        src={`${category?.icon}`}
-      />
-    </p>
-    <div className="px-5 pb-5">
-      <a  >
-        <h5 className={styles.title}>{category?.name}</h5>
-      </a>
+    <div className="container  my-7 lg:px-3">
+      <h2 className="text-3xl text-center font-bold ">
+        {" "}
+        Explore Oure All Category
+      </h2>
+      <p className="text-center mt-3">
+        Discover a myriad of meticulously crafted furniture options across{" "}
+        <br></br>
+        categories at Dream Furniture, promising style and quality for every
+        room
+      </p>
+
+    <div className="my-10">
+    <Slider {...settings}>
+        {data?.data?.categories.map((category: any, index: number) => (
+          <Link key={index} href={`/categories/${category.slug.toLowerCase()}`}>
+            <div className="w-full rounded-md max-w-sm bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700  flex flex-col justify-center  items-center">
+              <a href="#">
+                <img
+                  className="    h-36 object-cover"
+                  src={category?.icon}
+                  alt="product image"
+                />
+              </a>
+              <div className="px-5 pb-5">
+                <a href="#">
+                  <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    {category?.name}
+                  </h5>
+                </a>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </Slider>
     </div>
-  </div></Link>
-  ))}
-  
-</Carousel>
-)}
-      
     </div>
   );
 }

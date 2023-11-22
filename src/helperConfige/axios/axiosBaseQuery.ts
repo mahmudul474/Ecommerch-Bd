@@ -1,9 +1,9 @@
-import { createApi } from '@reduxjs/toolkit/query'
+
 import type { BaseQueryFn } from '@reduxjs/toolkit/query'
 import axios from 'axios'
 import type { AxiosRequestConfig, AxiosError } from 'axios'
 
-export   const axiosBaseQuery =
+ export const axiosBaseQuery =
   (
     { baseUrl }: { baseUrl: string } = { baseUrl: '' }
   ): BaseQueryFn<
@@ -13,6 +13,9 @@ export   const axiosBaseQuery =
       data?: AxiosRequestConfig['data']
       params?: AxiosRequestConfig['params']
       headers?: AxiosRequestConfig['headers']
+    
+     contentType: string
+    
     },
     unknown,
     unknown
@@ -25,9 +28,6 @@ export   const axiosBaseQuery =
         data,
         params,
         headers,
-
-        
-    
       })
       return { data: result.data }
     } catch (axiosError) {
@@ -41,4 +41,3 @@ export   const axiosBaseQuery =
     }
   }
 
- 

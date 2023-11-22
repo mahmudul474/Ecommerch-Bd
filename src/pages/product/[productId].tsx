@@ -1,7 +1,7 @@
 import Layout from "@/components/Layots/RootLayot";
 import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
 import SubImgSlider from "@/components/shared/SubImgSlider/SubImgSlider";
-import { useGetAllproductBySlugNameQuery } from "@/redux/api/ProductApi/products";
+import { useGetSingelProductQuery } from "@/redux/api/products/productSlice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -10,9 +10,16 @@ export default function ProductDittails() {
   const router = useRouter();
   const { productId } = router.query;
 
+console.log(productId)
+
+
   const { data, isLoading, isError } =
-    useGetAllproductBySlugNameQuery(productId);
+    useGetSingelProductQuery(productId);
   const product = data?.data;
+console.log(product)
+ 
+
+
 
   const [subimageUrl, setSubImgUrl] = useState<string>("");
   /// img    slider
@@ -36,6 +43,7 @@ export default function ProductDittails() {
   }
 
   return (
+    
     <div className="bg-white px-7 ">
       <div className="container grid  py-10 grid-cols-1 lg:grid-cols-2 gap-6 ">
         <div className="w-full ">
@@ -192,3 +200,6 @@ export default function ProductDittails() {
 ProductDittails.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
+
+
+ 
