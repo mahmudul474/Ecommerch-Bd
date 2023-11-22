@@ -1,19 +1,10 @@
-// import React from 'react'
-
-// export default function Blog() {
-//   return (
-//     <div  className='my-10'>
-
-//     </div>
-//   )
-// }
+ 
 import { ISpaceService } from "@/Types/spaceCatefory";
 import React from "react";
 import styles from "@/styles/spaceCategory.module.css";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useGetALLSpacewsieQuery } from "@/redux/api/CategoryApi/category";
 import LoadingSpinner from "../shared/LoadingSpinner/LoadingSpinner";
 import Link from "next/link";
 
