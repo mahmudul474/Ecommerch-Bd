@@ -1,7 +1,17 @@
+import { useGetCategoryBySlugNameQuery } from "@/redux/api/category/categorySlice";
+import Link from "next/link";
 import React, { useState } from "react";
 
 export default function Megamenu() {
   const [showSubMenu, setShowSubMenu] = useState(null);
+  const { data:allDoor, isLoading, isError } = useGetCategoryBySlugNameQuery("all-door");
+  const { data:ce, } = useGetCategoryBySlugNameQuery("");
+
+
+
+
+
+
 
   const handleMouseEnter = (index: any) => {
     setShowSubMenu(index);
@@ -12,142 +22,30 @@ export default function Megamenu() {
   };
 
   const menuItems = [
+   
     {
-      label: "New",
-      link: "/",
-    },
-    {
-      label: "Living ",
-      subMenu: [{ label: "Bed", link: "/product1", category: [] }],
-    },
-    {
-      label: "Bedroom",
+      label: "Doors",
       subMenu: [
-        {
-          label: "Bed",
-          link: "#",
-          category: [
-            {
-              label: "Super Bed",
-            },
-            {
-              label: "Latest",
-            },
-            {
-              label: "Super Bed",
-            },
-          ],
-        },
-        {
-          label: "Service ",
-          link: "/service1",
-          category: [
-            {
-              label: "Super Bed",
-            },
-            {
-              label: "Latest-bed",
-            },
-            {
-              label: "Super Bed",
-            },
-          ],
-        },
-        { label: "Service", link: "/service2" },
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        { label: "Service ", link: "/service1" },
-        {
-          label: "Service",
-          link: "/service2",
-          category: [
-            {
-              label: "Super Bed",
-            },
-            {
-              label: "Latest-bed",
-            },
-            {
-              label: "Super Bed",
-            },
-          ],
-        },
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
+
+        { label: "Div.  Series", link: "/div-door" },
+        { label: "Classic Series", link: "/service2" },
+        { label: "Premium Series", link: "/premium-door" },
+        { label: "Luxury Series", link: "/luxury-door" },
+        
+         
+        { label: "Decoretive Series ", link: "/decorative-door" },
+        { label: "Exclusive Series", link: "/exclusive-door" },
+        { label: "Plain Series", link: "" },
+        { label: "Flush Series", link: "/flush-door" },
+       
+        { label: "Glass Series", link: "/service2" },
+        { label: "Groove Series", link: "/grove-door" },
+        { label: "Double Door Series", link: "/service2" },
+        { label: "Cat Door Series", link: "/cat-door" },
+       
       ],
     },
-    {
-      label: "Dining ",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Kitchen",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "KidsRoom",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "SmartFit",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Institutional",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Door",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Interior",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Offics",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service ", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Hospital",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
+
   ];
 
   return (
@@ -172,17 +70,18 @@ export default function Megamenu() {
                     onMouseLeave={handleMouseLeave}
                     className="p-6 mega-menu     mb-16 sm:mb-0 shadow-xl  bg-white text-black"
                   >
-                    <div className="container mx-auto w-full grid grid-rows-1 lg:grid-cols-4 md: grid-cols-3 mx-2">
+                    <div className="container  w-full grid grid-rows-1 lg:grid-cols-4 md: grid-cols-3 mx-2">
                       {item.subMenu.map((subItem: any, subIndex: number) => (
-                        <ul className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                          <h3 className="font-bold text-xl text-white text-bold mb-2"></h3>
+                        <ul className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0   first-line: lg:pt-3">
+                    
+                         <Link href={`/products${subItem.link}`}>
                           <li
-                              className="block p-3 text-xl capitalize  font-bold    text-black cursor-pointer hover:text-yellow-400    "
+                              className="block  text-lg capitalize    text-black cursor-pointer hover:text-yellow-400    "
                             >
                               {subItem.label}
                         
-                          </li>
-                          {subItem?.category &&
+                          </li></Link>
+                          {/* {subItem?.category &&
                             subItem?.category.length > 0 &&
                             subItem?.category.map((cat: any) => (
                               <li
@@ -191,7 +90,7 @@ export default function Megamenu() {
                                   {cat.label}
                              
                               </li>
-                            ))}
+                            ))} */}
                         </ul>
                       ))}
                     </div>

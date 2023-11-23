@@ -1,15 +1,12 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useGetLatestProductQuery } from "@/redux/api/products/productSlice";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/freaturs/Cart/cartSlice";
-import { toast } from "react-toastify";
 import Link from "next/link";
-
- 
-
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 const LatestProduct = () => {
   const { data, isLoading, isError } = useGetLatestProductQuery("latest");
 
@@ -61,10 +58,12 @@ const LatestProduct = () => {
   const dispatch = useDispatch();
 
  
- 
+  const router = useRouter();
 
  const  handleAddtocart=(product:any)=>{
-  dispatch(addToCart(product));
+  dispatch(addToCart(product))
+ 
+ router.push("/cart")
  }
 
   return (

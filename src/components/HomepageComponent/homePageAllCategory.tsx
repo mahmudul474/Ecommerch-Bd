@@ -3,8 +3,6 @@ import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import Slider from "react-slick";
 import { useGetallCategoryQuery } from "@/redux/api/category/categorySlice";
-import Image from "next/image";
-import styles from "../../styles/homepageAllcategory.module.css";
 import Link from "next/link";
 
 export default function HomePageAllCategory() {
@@ -12,46 +10,43 @@ export default function HomePageAllCategory() {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    autoplaySpeed: 2000,
-    slidesToShow: 6,
-    slidesToScroll: 4,
-    initialSlide: 0,
     autoplay: true,
-
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    autoplaySpeed: 5000,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           autoplay: true,
-
-          slidesToShow: 4,
-          slidesToScroll: 7,
+          autoplaySpeed: 5000,
+          Infinity: true,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true,
-          autoplaySpeed: 5000,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 2,
           autoplay: true,
-          infinite: true,
-          slidesToScroll: 2,
-          initialSlide: 4,
           autoplaySpeed: 5000,
+          slidesToScroll: 2,
+          initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          Infinity: true,
+          slidesToShow: 1,
           autoplay: true,
-          slidesToShow: 2,
-          slidesToScroll: 1,
           autoplaySpeed: 5000,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -71,7 +66,7 @@ export default function HomePageAllCategory() {
       </p>
 
     <div className="my-10">
-    <Slider {...settings}>
+    <Slider  {...settings}>
         {data?.data?.categories.map((category: any, index: number) => (
           <Link key={index} href={`/categories/${category.slug.toLowerCase()}`}>
             <div className="w-full rounded-md max-w-sm bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700  flex flex-col justify-center  items-center">

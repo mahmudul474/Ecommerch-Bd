@@ -2,24 +2,21 @@ import Layout from "@/components/Layots/RootLayot";
 import LoadingSpinner from "@/components/shared/LoadingSpinner/LoadingSpinner";
 import SubImgSlider from "@/components/shared/SubImgSlider/SubImgSlider";
 import { useGetSingelProductQuery } from "@/redux/api/products/productSlice";
+import { addToCart } from "@/redux/freaturs/Cart/cartSlice";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function ProductDittails() {
   const router = useRouter();
   const { productId } = router.query;
 
-console.log(productId)
+  console.log(productId);
 
-
-  const { data, isLoading, isError } =
-    useGetSingelProductQuery(productId);
+  const { data, isLoading, isError } = useGetSingelProductQuery(productId);
   const product = data?.data;
-console.log(product)
- 
-
-
+  
 
   const [subimageUrl, setSubImgUrl] = useState<string>("");
   /// img    slider
@@ -42,23 +39,41 @@ console.log(product)
     return <LoadingSpinner></LoadingSpinner>;
   }
 
+
+
+
+  const dispatch = useDispatch();
+
+ const  handleAddtocart=(product:any)=>{
+  dispatch(addToCart(product))
+ 
+ router.push("/cart")
+ }
+
+
+
+
+
+
+
   return (
-    
     <div className="bg-white px-7 ">
       <div className="container grid  py-10 grid-cols-1 lg:grid-cols-2 gap-6 ">
         <div className="w-full ">
-         
-
           <div className="sticky top-0 z-0 overflow-hidden ">
             <div className="relative  lg:mb-10 h-[450px]">
               {subimageUrl ? (
-                <Image  alt="img " width={100} height={100}
+                <Image
+                  alt="img "
+                  width={100}
+                  height={100}
                   src={subimageUrl}
-                   
                   className="  object-contain  w-full h-full  "
                 />
               ) : (
-                <Image width={100} height={100}
+                <Image
+                  width={100}
+                  height={100}
                   src={product?.thumbnail}
                   alt=""
                   className=" h-full   object-contain  w-full   "
@@ -66,9 +81,9 @@ console.log(product)
               )}
             </div>
             <SubImgSlider
-                  handleSubimgShow={handleSubimgShow}
-                  images={product&& product.images}
-                ></SubImgSlider>
+              handleSubimgShow={handleSubimgShow}
+              images={product && product.images}
+            ></SubImgSlider>
           </div>
         </div>
         <div className="w-full ">
@@ -163,7 +178,10 @@ console.log(product)
             </span>
           </div>
           <div className="flex justify-start  py-5 items-center">
-            <button className=" rounded p-3 text-black    bg-red-500  border-0 inline-flex items-center justify-center  border-primary   hover:text-primary hover:bg-transparent  ">
+            <button
+             onClick={()=>{handleAddtocart(product)}}
+            
+            className=" rounded p-3 text-black    bg-red-500  border-0 inline-flex items-center justify-center  border-primary   hover:text-primary hover:bg-transparent  ">
               Add To Cart
             </button>
             <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -200,6 +218,3 @@ console.log(product)
 ProductDittails.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
-
-
- 
