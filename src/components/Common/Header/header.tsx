@@ -6,17 +6,23 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Megamenu from "./megamenu";
 import MobaileMegamenu from "./mobilemegamenu";
+import { useRouter } from "next/router";
 
 export default function Header() {
- 
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
-
+  const router = useRouter();
+  const [searchValue, setSerchvalue] = useState("");
   const handleToggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen); 
+    setSidebarOpen(!sidebarOpen);
   };
 
- 
+  const handelSearch = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const from = e.target;
+   
+    router.push(`/search-result/${searchValue}`);
+  };
 
   return (
     <div>
@@ -26,7 +32,6 @@ export default function Header() {
       <div className="bg-white">
         <div className="border   px-6">
           <div className="flex justify-between">
-    
             <span
               className="my-auto w-10 lg:hidden cursor-pointer"
               onClick={handleToggleSidebar}
@@ -34,42 +39,70 @@ export default function Header() {
               <FaBars></FaBars>
             </span>
 
-            <div className="flex items-center">
+            <div className="flex   w-40 items-center">
               <Link href="/" className="">
-                <Image layout="responsive" loading="lazy" src={logo} alt="logo" />
+                <Image
+                  layout="responsive"
+                  loading="lazy"
+                  src={logo}
+                  alt="logo"
+                />
               </Link>
             </div>
 
-            <div className=" relative w-[70%] ml-6 flex items-center justify-end  flex-1 gap-x-3">
-              <input
-                type="text"
-                className="w-[70%]  h-12  border rounded-xl border-primary te hidden lg:block  px-3 py-2 text-sm"
-                placeholder="search"
-              />
-              <span className="   hidden lg:block   absolute right-3">
-                <svg
-                  className="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
+            <form
+              onSubmit={handelSearch}
+              className="w-2/6 mt-4  hidden lg:block"
+            >
+              <label
+                htmlFor="default-search"
+                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+              >
+                Search
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  onChange={(e) => {
+                    setSerchvalue(e.target.value);
+                  }}
+                  name="fromdata"
+                  type="search"
+                  id="default-search"
+                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50     dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white   "
+                  placeholder="Example :  door..."
+                  required
+                />
+                <button
+                  type="submit"
+                  className="text-white absolute end-2.5 bottom-2.5 bg-gray-600 hover:bg-red-400  focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  "
                 >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </span>
-            </div>
+                  Search
+                </button>
+              </div>
+            </form>
 
             <div className="ml-2 flex">
               <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
-                <Link href="/cart">
+                <Link href="/cart" className="flex space-x-2"> 
                   {" "}
-                  <div className="relative">
+                  <div className="relative ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-gray-500"
@@ -86,7 +119,7 @@ export default function Header() {
                 </Link>
               </div>
 
-              <div className="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border   hover:bg-gray-100">
+              <div className="  flex cursor-pointer items-center gap-x-1 ">
                 <Link href="/login">
                   <span className="text-sm font-medium">Sign in</span>
                 </Link>{" "}
@@ -95,18 +128,55 @@ export default function Header() {
           </div>
 
           <div className="hidden lg:block md:block">
-            <Megamenu ></Megamenu>
+            <Megamenu></Megamenu>
           </div>
         </div>
       </div>
 
-      <div className="w-full px-5">
-        <input
-          type="text"
-          className=" mx-auto block my-2 lg:hidden w-full rounded-md border border-gray-700 px-3 py-2 text-sm"
-          placeholder="search"
-        />
-      </div>
+      <form onSubmit={handelSearch} className=" lg:hidden mx-3">
+        <label
+          htmlFor="default-search"
+          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        >
+          Search
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              />
+            </svg>
+          </div>
+          <input
+            name="fromdata"
+            type="search"
+            onChange={(e) => {
+              setSerchvalue(e.target.value);
+            }}
+            id="default-search"
+            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search Mockups, Logos..."
+            required
+          />
+          <button
+            type="submit"
+            className="text-white absolute end-2.5 bottom-2.5   bg-slate-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Search
+          </button>
+        </div>
+      </form>
 
       <div
         className={`${

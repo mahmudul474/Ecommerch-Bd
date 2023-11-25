@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 
 
-export default function MobaileMegamenu({setSidebarOpen}) {
+export default function MobaileMegamenu({setSidebarOpen}:any) {
   const [showSubMenu, setShowSubMenu] = useState(null);
 
   const handleToggle = (index: any) => {
