@@ -35,7 +35,7 @@ export default function Footer() {
             <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
               <div className="mb-10 w-full">
                 <h4 className="text-dark mb-9 text-lg font-semibold">
-                  Resources
+                THE COMPANY
                 </h4>
                 <ul>
                   <li>

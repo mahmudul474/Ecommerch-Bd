@@ -74,6 +74,7 @@ const OfficeFurniture = () => {
                       style={{
                         objectFit: "contain",
                         width: "100%",
+                        padding:"0px 15px",
                         height: "100%",
                       }}
                       src={category.icon}
