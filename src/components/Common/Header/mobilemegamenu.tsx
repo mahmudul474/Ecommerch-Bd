@@ -1,236 +1,114 @@
+import Link from "next/link";
 import React, { useState } from "react";
 
-export default function  MobaileMegamenu() {
+
+
+
+export default function MobaileMegamenu({setSidebarOpen}) {
   const [showSubMenu, setShowSubMenu] = useState(null);
 
-  const handleMouseEnter = (index: any) => {
-    setShowSubMenu(index);
-  };
-
-  const handleMouseLeave = () => {
-    setShowSubMenu(null);
+  const handleToggle = (index: any) => {
+    if (showSubMenu === index) {
+      setShowSubMenu(null); // Close the submenu if already open
+    } else {
+      setShowSubMenu(index); 
+      
+    }
   };
 
   const menuItems = [
     {
-      label: "New",
-      link: "/",
-    },
-    {
-      label: "Living ",
-      subMenu: [{ label: "Bed", link: "/product1", category: [] }],
-    },
-    {
-      label: "Bedroom",
+      label: "Doors",
       subMenu: [
-        {
-          label: "Bed",
-          link: "#",
-          category: [
-            {
-              label: "Super Bed",
-            },
-            {
-              label: "Latest",
-            },
-            {
-              label: "Super Bed",
-            },
-          ],
-        },
-        {
-          label: "Service ",
-          link: "/service1",
-          category: [
-            {
-              label: "Super Bed",
-            },
-            {
-              label: "Latest-bed",
-            },
-            {
-              label: "Super Bed",
-            },
-          ],
-        },
-        { label: "Service", link: "/service2" },
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        { label: "Service ", link: "/service1" },
-        {
-          label: "Service",
-          link: "/service2",
-          category: [
-            {
-              label: "Super Bed",
-            },
-            {
-              label: "Latest-bed",
-            },
-            {
-              label: "Super Bed",
-            },
-          ],
-        },
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-      ],
-    },
-    {
-      label: "Dining ",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Kitchen",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "KidsRoom",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "SmartFit",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Institutional",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Door",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Interior",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Offics",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service fdfdf dfdfd sdsd sd asd sd ", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Hospital",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "SmartFit",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
-    {
-      label: "Allied",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
-      ],
-    },
+        { label: "Div.  Series", link: "/div-door" },
+        { label: "Classic Series", link: "/service2" },
+        { label: "Premium Series", link: "/premium-door" },
+        { label: "Luxury Series", link: "/luxury-door" },
 
-    {
-      label: "Interior",
-      subMenu: [
-        { label: "Service ", link: "/service1" },
-        { label: "Service", link: "/service2" },
-        // Add more sub-menu items
+        { label: "Decoretive Series ", link: "/decorative-door" },
+        { label: "Exclusive Series", link: "/exclusive-door" },
+        { label: "Plain Series", link: "" },
+        { label: "Flush Series", link: "/flush-door" },
+
+        { label: "Glass Series", link: "/service2" },
+        { label: "Groove Series", link: "/grove-door" },
+        { label: "Double Door Series", link: "/service2" },
+        { label: "Cat Door Series", link: "/cat-door" },
       ],
     },
   ];
 
   return (
-    <div className=" font-sans leading-normal tracking-normal mt-5">
-      <nav className="relative bg-white border-b-2 border-gray-300 text-gray-900">
-        <div className="container mx-auto flex justify-between">
-          <ul className="flex pb-3 flex-col">
-            {menuItems?.map((item: any, index: number) => (
-              <li className="hoverable hover:bg-teal-700 hover:text-white">
-                <p
-                  key={index}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}
-                  className="relative block  px-4 text-sm lg:text-base font-bold hover:bg-teal-700 hover:text-white"
-                >
-                  {item?.label}
-                </p>
-
-                {item.subMenu && showSubMenu === index && (
-                  <div
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                    className="p-6 mega-menu absolute      mb-16 sm:mb-0 shadow-xl bg-gray-400"
-                  >
-                    <div className="container mx-auto w-full grid  grid-cols-1 mx-2">
-                      {item.subMenu.map((subItem: any, subIndex: number) => (
-                        <ul className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
-                          <h3 className="font-bold text-xl text-white text-bold mb-2"></h3>
-                          <li>
-                            <a
-                              href="#"
-                              className="block p-3 text-xl capitalize  font-bold hover:bg-teal-900 text-gray-300 hover:text-white"
-                            >
-                              {subItem.label}
-                            </a>
-                          </li>
-                          {subItem?.category &&
-                            subItem?.category.length > 0 &&
-                            subItem?.category.map((cat: any) => (
-                              <li>
-                                <a
-                                  href="#"
-                                  className="block p-3 hover:bg-teal-900 text-gray-300 hover:text-white"
-                                >
-                                  {cat.label}
-                                </a>
-                              </li>
-                            ))}
-                        </ul>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </li>
+    <>
+   <aside className="" aria-label="Sidebar">
+  <div className="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800">
+    <ul className="space-y-2 font-medium">
+      {menuItems?.map((item: any, index: number) => (
+        <li key={index}>
+          <button
+            onClick={() => handleToggle(index)}
+            className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+          >
+            <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+              {item?.label}
+            </span>
+            {item.subMenu && (showSubMenu === index ? (
+              <svg
+                className="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 15l7-7 7 7"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
             ))}
-          </ul>
-        </div>
-      </nav>
-    </div>
+          </button>
+
+          {item.subMenu && showSubMenu === index && (
+            <ul className="py-2 space-y-2">
+              {item.subMenu?.map((subitem: any, subIndex: number) => (
+                <li key={subIndex}>
+                  <Link  
+                  onClick={()=>setSidebarOpen(false)}
+                  href={`/products${subitem.link}`}
+                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    {subitem?.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</aside>
+
+
+    </>
   );
 }

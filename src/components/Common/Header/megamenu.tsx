@@ -4,14 +4,6 @@ import React, { useState } from "react";
 
 export default function Megamenu() {
   const [showSubMenu, setShowSubMenu] = useState(null);
-  const { data:allDoor, isLoading, isError } = useGetCategoryBySlugNameQuery("all-door");
-  const { data:ce, } = useGetCategoryBySlugNameQuery("");
-
-
-
-
-
-
 
   const handleMouseEnter = (index: any) => {
     setShowSubMenu(index);
@@ -22,30 +14,25 @@ export default function Megamenu() {
   };
 
   const menuItems = [
-   
     {
       label: "Doors",
       subMenu: [
-
         { label: "Div.  Series", link: "/div-door" },
         { label: "Classic Series", link: "/service2" },
         { label: "Premium Series", link: "/premium-door" },
         { label: "Luxury Series", link: "/luxury-door" },
-        
-         
+
         { label: "Decoretive Series ", link: "/decorative-door" },
         { label: "Exclusive Series", link: "/exclusive-door" },
         { label: "Plain Series", link: "" },
         { label: "Flush Series", link: "/flush-door" },
-       
+
         { label: "Glass Series", link: "/service2" },
         { label: "Groove Series", link: "/grove-door" },
         { label: "Double Door Series", link: "/service2" },
         { label: "Cat Door Series", link: "/cat-door" },
-       
       ],
     },
-
   ];
 
   return (
@@ -73,24 +60,11 @@ export default function Megamenu() {
                     <div className="container  w-full grid grid-rows-1 lg:grid-cols-4 md: grid-cols-3 mx-2">
                       {item.subMenu.map((subItem: any, subIndex: number) => (
                         <ul className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0   first-line: lg:pt-3">
-                    
-                         <Link href={`/products${subItem.link}`}>
-                          <li
-                              className="block  text-lg capitalize    text-black cursor-pointer hover:text-yellow-400    "
-                            >
+                          <Link href={`/products${subItem.link}`}>
+                            <li className="block  text-lg capitalize    text-black cursor-pointer hover:text-yellow-400    ">
                               {subItem.label}
-                        
-                          </li></Link>
-                          {/* {subItem?.category &&
-                            subItem?.category.length > 0 &&
-                            subItem?.category.map((cat: any) => (
-                              <li
-                                  className="block p-3 hover:bg-teal-900 text-black hover:text-white"
-                                >
-                                  {cat.label}
-                             
-                              </li>
-                            ))} */}
+                            </li>
+                          </Link>
                         </ul>
                       ))}
                     </div>

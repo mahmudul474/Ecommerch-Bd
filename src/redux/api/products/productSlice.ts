@@ -11,6 +11,10 @@ export const productapi = baseApi.injectEndpoints({
     getSingelProduct: builder.query({
       query: (slug): any => `/products/${slug}`,
     }),
+
+    getSearchProducts: builder.query({
+      query: (name): any => `/products?search=${name}`,
+    })
   }),
 });
 
@@ -18,4 +22,5 @@ export const {
   useGetSingelProductQuery,
   useGetLatestProductQuery,
   useGetProductBycategoryNameQuery,
+  useGetSearchProductsQuery
 } = productapi;

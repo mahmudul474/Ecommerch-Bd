@@ -61,7 +61,7 @@ const OfficeFurniture = () => {
             <Link
             className="conteiner mx-auto  my-6 px-2"
               key={category._id}
-              href={`/products/${category.name.toLowerCase()}`}
+              href={`/products/${category.slug.toLowerCase()}`}
             >
               <>
                 <div className="flex border border-gray-200  shadow-xl justify-center   items-center flex-col">
