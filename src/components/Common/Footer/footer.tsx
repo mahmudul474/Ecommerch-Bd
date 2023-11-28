@@ -8,12 +8,17 @@ export default function Footer() {
       <footer className="z-10 bg-white">
         <div className="container mx-auto">
           <div className=" flex flex-wrap">
-            <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
+            <div className="w-full px-6 sm:w-2/3 lg:w-4/12">
               <div className="mb-10 w-full">
                 <Image width={200} height={200} src={logo} alt="logo" />
-                <p className="text-body-color mb-7 text-base">
-                  Sed ut perspiciatis undmnis is iste natus error sit amet
-                  voluptatem totam rem aperiam.
+                <p className=" text-gray-500 text-body-color font-bold text-[12px] mb-7 text-base">
+                  Dream Furniture BD is a modern and practical furniture brand
+                  that offers a wide range of products for both home and office
+                  .Dream Furniture believe that is not only functional but also
+                  reflects your style and intelligence. Our collection is
+                  environmentally friendly and designed to suit your awesome
+                  lifestyle. Visit their store to explore their amazing
+                  offerings.{" "}
                 </p>
                 <p className="text-dark flex items-center text-sm font-medium">
                   <span className="text-primary mr-3">
@@ -32,10 +37,10 @@ export default function Footer() {
                 </p>
               </div>
             </div>
-            <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+            <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
               <div className="mb-10 w-full">
                 <h4 className="text-dark mb-9 text-lg font-semibold">
-                THE COMPANY
+                  THE COMPANY
                 </h4>
                 <ul>
                   <li>
@@ -43,7 +48,7 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      SaaS Development
+                      About Us
                     </a>
                   </li>
                   <li>
@@ -51,7 +56,7 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Our Products
+                      Company-Profile
                     </a>
                   </li>
                   <li>
@@ -59,7 +64,7 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      User Flow
+                      Contact Us
                     </a>
                   </li>
                   <li>
@@ -67,16 +72,16 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      User Strategy
+                      Showroom Location
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+            <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
               <div className="mb-10 w-full">
                 <h4 className="text-dark mb-9 text-lg font-semibold">
-               INFORMATION
+                  More INFORMATION
                 </h4>
                 <ul>
                   <li>
@@ -84,7 +89,7 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      About TailGrids
+                      Faq
                     </a>
                   </li>
                   <li>
@@ -92,7 +97,7 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Contact & Support
+                      Feed-back
                     </a>
                   </li>
                   <li>
@@ -100,7 +105,23 @@ export default function Footer() {
                       href=""
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Success History
+                      Privacy-policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href=""
+                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                    >
+                      Return-policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href=""
+                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                    >
+                      Billing & Terms Conditions
                     </a>
                   </li>
                   <li>
@@ -114,55 +135,15 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
+
             <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
-              <div className="mb-10 w-full">
-                <h4 className="text-dark mb-9 text-lg font-semibold">
-                  Quick Links
-                </h4>
-                <ul>
-                  <li>
-                    <a
-                      href=""
-                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Premium Support
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href=""
-                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Our Services
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href=""
-                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Know Our Team
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href=""
-                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Download App
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
               <div className="mb-10 w-full">
                 <h4 className="text-dark mb-9 text-lg font-semibold">
                   Follow Us On
                 </h4>
                 <div className="mb-6 flex items-center">
                   <a
-                    href=""
+                    href="https://www.facebook.com/dremfurniturebd"
                     className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
@@ -214,13 +195,13 @@ export default function Footer() {
                     </svg>
                   </a>
                 </div>
-                <p className="text-body-color text-base">
-                  &copy; 2025 TailGrids
-                </p>
               </div>
             </div>
           </div>
         </div>
+        <p className="text-body-color  text-center my-5 text-base">
+          &copy; 2024 dreamfurniturebd.com
+        </p>
       </footer>
     </>
   );
