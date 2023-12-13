@@ -110,14 +110,7 @@ export default function Footer() {
                       Billing & Terms Conditions
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      href="/setting&privacy"
-                      className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Setting & Privacy
-                    </Link>
-                  </li>
+                  
                 </ul>
               </div>
             </div>
