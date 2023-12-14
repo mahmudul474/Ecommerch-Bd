@@ -41,7 +41,7 @@ export default function Megamenu() {
         <div className="container mx-auto flex justify-between">
           <ul className="flex pb-3">
             {menuItems?.map((item: any, index: number) => (
-              <li className="hoverable hover:bg-gray-400 hover:text-white">
+              <li key={index} className="hoverable hover:bg-gray-400 hover:text-white">
                 <p
                   key={index}
                   onMouseEnter={() => handleMouseEnter(index)}
@@ -59,7 +59,7 @@ export default function Megamenu() {
                   >
                     <div className="container  w-full grid grid-rows-1 lg:grid-cols-4 md: grid-cols-3 mx-2">
                       {item.subMenu.map((subItem: any, subIndex: number) => (
-                        <ul className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0   first-line: lg:pt-3">
+                        <ul key={subIndex} className="px-4 w-full   border-gray-600 border-b sm:border-r lg:border-b-0   first-line: lg:pt-3">
                           <Link href={`/products${subItem.link}`}>
                             <li className="block  text-lg capitalize    text-black cursor-pointer hover:text-yellow-400    ">
                               {subItem.label}

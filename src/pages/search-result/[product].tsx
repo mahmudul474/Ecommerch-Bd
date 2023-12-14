@@ -22,7 +22,7 @@ export default function Products() {
       <div className="grid my-5 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
         {data &&
           data?.data?.data.map((product: any) => (
-            <div className="mx-4">
+            <div  key={product?._id} className="mx-4">
               <div
                 key={product?._id}
                 className="border  border-gray-200 px-3 rounded-md bg-gray-50 dark:border-gray-900 rounded-b-md dark:bg-gray-900"

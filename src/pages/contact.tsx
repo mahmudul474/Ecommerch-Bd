@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <section className="flex items-center bg-gray-100 lg:h-screen font-poppins dark:bg-gray-800 ">
+    <section className="flex items-center bg-gray-100 font-poppins dark:bg-gray-800 ">
       <div className="justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-11 md:px-6">
         <div className="border border-gray-200 shadow-md bg-gradient-to-l dark:border-gray-900 via-gray-50 dark:via-gray-900 from-blue-100 to-blue-100 dark:to-gray-900 dark:from-gray-900 py-11">
           <div className="flex flex-col-reverse flex-wrap lg:flex-row">
