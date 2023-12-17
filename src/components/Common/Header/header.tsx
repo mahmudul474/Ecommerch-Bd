@@ -25,11 +25,11 @@ export default function Header() {
     data: products,
     isLoading,
     isError,
-  } = useGetSearchProductsQuery(searchValue || null); // Pass null if 
+  } = useGetSearchProductsQuery(searchValue || null);  
 const cart = useSelector((state: { cart: [] }) => state.cart);
 const totalItems = cart.reduce((acc, item: any) => acc + item.quantity, 0);
    
-  const searchProduct = products?.data?.data || []; // Set searchProduct to 
+  const searchProduct = products?.data?.data || []; 
   const emptyProduct = searchValue.trim() === "" && searchProduct.length === 0;
   const handleToggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -106,6 +106,7 @@ const totalItems = cart.reduce((acc, item: any) => acc + item.quantity, 0);
                   onChange={(e) => {
                     setSerchvalue(e.target.value);
                   }}
+                  value={searchValue}
                   name="fromdata"
                   type="search"
                   id="default-search"
@@ -228,6 +229,7 @@ const totalItems = cart.reduce((acc, item: any) => acc + item.quantity, 0);
           <input
             name="fromdata"
             type="search"
+            value={searchValue}
             onChange={(e) => {
               setSerchvalue(e.target.value);
             }}
