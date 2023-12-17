@@ -16,27 +16,52 @@ export default function MobaileMegamenu({setSidebarOpen}:any) {
     }
   };
 
-  const menuItems = [
-    {
-      label: "Doors",
-      subMenu: [
-        { label: "Div.  Series", link: "/div-door" },
-        { label: "Classic Series", link: "/service2" },
-        { label: "Premium Series", link: "/premium-door" },
-        { label: "Luxury Series", link: "/luxury-door" },
+    const menuItems = [
+      {
+        label: "Doors",
 
-        { label: "Decoretive Series ", link: "/decorative-door" },
-        { label: "Exclusive Series", link: "/exclusive-door" },
-        { label: "Plain Series", link: "" },
-        { label: "Flush Series", link: "/flush-door" },
+        subMenu: [
+          { label: "Div.  Series", link: "/div-door" },
+          { label: "Classic Series", link: "/service2" },
+          { label: "Premium Series", link: "/premium-door" },
+          { label: "Luxury Series", link: "/luxury-door" },
 
-        { label: "Glass Series", link: "/service2" },
-        { label: "Groove Series", link: "/grove-door" },
-        { label: "Double Door Series", link: "/service2" },
-        { label: "Cat Door Series", link: "/cat-door" },
-      ],
-    },
-  ];
+          { label: "Decoretive Series ", link: "/decorative-door" },
+          { label: "Exclusive Series", link: "/exclusive-door" },
+          { label: "Plain Series", link: "" },
+          { label: "Flush Series", link: "/flush-door" },
+
+          { label: "Glass Series", link: "/service2" },
+          { label: "Groove Series", link: "/grove-door" },
+          { label: "Double Door Series", link: "/service2" },
+          { label: "Cat Door Series", link: "/cat-door" },
+        ],
+      },
+      {
+        label: "Living",
+      },
+      {
+        label: "Dining",
+      },
+      {
+        label: "Bedrooms",
+      },
+      {
+        label: "Kitchen",
+      },
+      {
+        label: "Office",
+      },
+      {
+        label: "Table",
+      },
+      {
+        label: "Desk",
+      },
+      {
+        label: "Sofa",
+      },
+    ];
 
   return (
     <>

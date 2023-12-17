@@ -12,22 +12,25 @@ import { isloggedin, removeUserInfo } from "@/services/auth.services";
 import { authkey } from "@/constancs/storage.key";
 import { useRouter } from "next/router";
 import { useGetSearchProductsQuery } from "@/redux/api/products/productSlice";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const isAuthenticated = isloggedin();
   const router = useRouter();
   const [searchValue, setSerchvalue] = useState("");
+  
 
   const {
     data: products,
     isLoading,
     isError,
-  } = useGetSearchProductsQuery(searchValue);
-  const searchProduct = products?.data?.data;
-
-  console.log(searchProduct);
-
+  } = useGetSearchProductsQuery(searchValue || null); // Pass null if 
+const cart = useSelector((state: { cart: [] }) => state.cart);
+const totalItems = cart.reduce((acc, item: any) => acc + item.quantity, 0);
+   
+  const searchProduct = products?.data?.data || []; // Set searchProduct to 
+  const emptyProduct = searchValue.trim() === "" && searchProduct.length === 0;
   const handleToggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -37,6 +40,13 @@ export default function Header() {
     const from = e.target;
     router.push(`/search-result/${searchValue}`);
   };
+
+
+ const navigateProduct=(product:any)=>{
+  router.push(`/product/${product.slug}`)
+  setSerchvalue("")
+ }
+
 
   return (
     <div>
@@ -116,10 +126,11 @@ export default function Header() {
                     <tbody>
                       {searchProduct.map((product: any, index: number) => (
                         <tr
+                          onClick={() => navigateProduct(product)}
                           key={index}
                           className="border-b border-gray-200 dark:border-gray-800"
                         >
-                          <Link href={`product/${product?.slug}`}>  <td className="flex items-center cursor-pointer  px-6 py-3 font-medium">
+                          <td className="flex items-center cursor-pointer  px-6 py-3 font-medium">
                             <div className="flex">
                               <img
                                 className="object-cover w-10 h-10 mr-4 rounded-xl"
@@ -132,7 +143,7 @@ export default function Header() {
                                 </p>
                               </div>
                             </div>
-                          </td></Link>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -155,7 +166,7 @@ export default function Header() {
                       <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                     </svg>
                     <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white">
-                      3
+                      {totalItems}
                     </span>
                   </div>
                   <span className="text-sm font-medium">Cart</span>
@@ -189,7 +200,7 @@ export default function Header() {
         </div>
       </div>
 
-      <form onSubmit={handelSearch} className=" lg:hidden mx-3">
+      <form onSubmit={handelSearch} className=" relative lg:hidden mx-3">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -232,6 +243,37 @@ export default function Header() {
             Search
           </button>
         </div>
+
+        {searchProduct && searchProduct.length > 0 && (
+          <div className="absolute top-14 z-50 h-[400px] overflow-x-auto shadow-xl w-full bg-slate-300">
+            <table className="w-full table-auto">
+              <tbody>
+                {searchProduct.map((product: any, index: number) => (
+                  <tr
+                    onClick={() => navigateProduct(product)}
+                    key={index}
+                    className="border-b border-gray-200 dark:border-gray-800"
+                  >
+                    <td className="flex items-center cursor-pointer  px-6 py-3 font-medium">
+                      <div className="flex">
+                        <img
+                          className="object-cover w-10 h-10 mr-4 rounded-xl"
+                          src={product.thumbnail}
+                          alt=""
+                        />
+                        <div>
+                          <p className="text-sm  capitalize font-medium dark:text-gray-400">
+                            {product.name}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </form>
 
       <div
