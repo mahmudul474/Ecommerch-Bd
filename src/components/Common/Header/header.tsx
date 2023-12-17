@@ -187,7 +187,7 @@ const totalItems = cart.reduce((acc, item: any) => acc + item.quantity, 0);
                   </div>
                 ) : (
                   <Link href="/login">
-                    <span className="text-sm font-medium">Sign in</span>
+                    <span className="text-sm font-medium">Login</span>
                   </Link>
                 )}
               </div>

@@ -22,6 +22,7 @@ const initialValues = {
 export default function Register() {
   const [userLogin, { isLoading }] = useUserLoginMutation();
   const router = useRouter();
+  const [erormessage, setErrormessage]=useState("")
 
   const {
     values,
@@ -41,8 +42,8 @@ export default function Register() {
           router.push("/user/dashbord");
         }
         storeUserInfo({ accessToken: res?.data?.accessToken });
-      } catch (error) {
-        console.log(error);
+      } catch (error:any) {
+           setErrormessage(error?.data?.message);
       }
     },
   });
@@ -91,7 +92,6 @@ export default function Register() {
                     ""
                   )}
                 </div>
-
                 <div className="relative">
                   <label
                     htmlFor="password"
@@ -123,11 +123,15 @@ export default function Register() {
                     ""
                   )}
                 </div>
-
-                <span className="text-left my-1 underline  cursor-pointer mt-2">
+                <Link href="/forgatepassword">
                   {" "}
-                  Forgate Password ?
-                </span>
+                  <span className="text-left my-1 underline  cursor-pointer mt-2">
+                    {" "}
+                    Forgate Password ?
+                  </span>
+                </Link>
+
+                <p className="text-red-400  capitalize text-center ">{erormessage}</p>
                 {isLoading ? (
                   <button
                     disabled

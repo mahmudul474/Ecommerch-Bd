@@ -58,7 +58,7 @@ export default function Register() {
         };
 
         const res = await userRegistetions({ ...userdata }).unwrap();
-        router.push("/auth");
+        router.push("/login");
       } catch (err: any) {
         const eror = err?.data?.message;
         setValidationEror(eror);
