@@ -6,10 +6,11 @@ export default function Verify() {
   const router = useRouter();
 
   const { token } = router.query;
-  const [loading, setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
+  const [confirmation, setConfirmations] = useState("");
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     if (token) {
       fetch(
         `https://api.dreamfurniturebd.com/api/v1/auth/confirm-account?token=${token}`,
@@ -19,20 +20,19 @@ export default function Verify() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          setConfirmations(data?.message);
           setLoading(false);
+        })
+        .catch((error) => {
+          setConfirmations(error.message);
         });
     }
   }, [token]);
 
-
-
-
-  if(loading){
-    return <h1>Loading....</h1>
+  if (loading) {
+    return <h1>Loading....</h1>;
   }
-
-  return <></>;
+  return <div>{confirmation}</div>;
 }
 Verify.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
