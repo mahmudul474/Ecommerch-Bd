@@ -1,9 +1,12 @@
 import Layout from "@/components/Layots/RootLayot";
+import { isloggedin } from "@/services/auth.services";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 export default function Verify() {
   const router = useRouter();
+
+  const authenticationUser = isloggedin();
 
   const { token } = router.query;
   const [loading, setLoading] = useState(false);
@@ -21,6 +24,14 @@ export default function Verify() {
         .then((response) => response.json())
         .then((data) => {
           setConfirmations(data?.message);
+
+          setTimeout(() => {
+            if (authenticationUser) {
+              router.push("/");
+            } else {
+              router.push("/login");
+            }
+          }, 3000);
           setLoading(false);
         })
         .catch((error) => {
