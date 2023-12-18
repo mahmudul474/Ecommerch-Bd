@@ -1,14 +1,31 @@
+import Layout from '@/components/Layots/RootLayot'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Verify() {
  const router=useRouter()
 
-        console.log(router.query)
+      const {token}=router.query
 
+useEffect(()=>{
 
+  fetch(
+    `ttps://api.dreamfurniturebd.com/api/v1/auth/confirm-account?token=${token}`,
+    {
+      method: "POST",
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+
+},[token])
 
   return (
-    <div>verify</div>
+    <div></div>
   )
 }
+Verify.getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
+};
