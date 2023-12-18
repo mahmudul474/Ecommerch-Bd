@@ -32,7 +32,11 @@ export default function Verify() {
   if (loading) {
     return <h1>Loading....</h1>;
   }
-  return <div>{confirmation}</div>;
+  return (
+    <div className="h-[400px]">
+      <h4  className="text-xl text-center ">{confirmation}</h4>
+    </div>
+  );
 }
 Verify.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
