@@ -10,8 +10,8 @@ export default function Repassword() {
   const handleNewPassWord = (e: any) => {
     e.preventDefault();
 
- console.log(token)
- 
+    console.log(token);
+
     if (token && password) {
       fetch(`https://api.dreamfurniturebd.com/api/v1/auth/reset-password`, {
         method: "POST",
@@ -23,7 +23,7 @@ export default function Repassword() {
       })
         .then((res) => res.json())
         .then((data) => {})
-        .catch(error=>console.error(error));
+        .catch((error) => console.error(error));
     }
   };
 
@@ -39,6 +39,7 @@ export default function Repassword() {
         >
           <input
             type="text"
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="New Password"
             className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
           />
