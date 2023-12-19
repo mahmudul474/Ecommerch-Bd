@@ -7,25 +7,24 @@ export default function Repassword() {
   const router = useRouter();
   const { token } = router.query;
 
-  const handleNewPassWord = (e:any) => {
+  const handleNewPassWord = (e: any) => {
     e.preventDefault();
-    const newPassword = password;
-    fetch(`https://api.dreamfurniturebd.com/api/v1/auth/reset-password`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        token: `${token}`,
-      },
-      body: JSON.stringify(newPassword),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setPassword("");
+
+ console.log(token)
+ 
+    if (token && password) {
+      fetch(`https://api.dreamfurniturebd.com/api/v1/auth/reset-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: `${token}`,
+        },
+        body: JSON.stringify({ newPassword: password }),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => res.json())
+        .then((data) => {})
+        .catch(error=>console.error(error));
+    }
   };
 
   return (
@@ -39,16 +38,11 @@ export default function Repassword() {
           className="flex flex-col max-w-md space-y-5"
         >
           <input
-            onChange={(e) => setPassword(e.target.value)}
             type="text"
-            value={password}
             placeholder="New Password"
             className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
           />
-          <button
-            type="submit"
-            className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-gray-500 text-white"
-          >
+          <button className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-gray-500 text-white">
             Confirm
           </button>
         </form>
