@@ -7,18 +7,24 @@ export default function Repassword() {
   const router = useRouter();
   const { token } = router.query;
 
-  const handleNewPassWord = () => {
+  const handleNewPassWord = (e:any) => {
+    e.preventDefault();
+    const newPassword = password;
     fetch(`https://api.dreamfurniturebd.com/api/v1/auth/reset-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         token: `${token}`,
       },
-      body: JSON.stringify({ newPassword: password }),
+      body: JSON.stringify(newPassword),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setPassword("");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -35,6 +41,7 @@ export default function Repassword() {
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="text"
+            value={password}
             placeholder="New Password"
             className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
           />
