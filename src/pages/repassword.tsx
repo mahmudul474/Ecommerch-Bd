@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 export default function Repassword() {
   const [password, setPassword] = useState("");
+  const [confirmation, setConfirmation] = useState("");
   const router = useRouter();
   const { token } = router.query;
 
@@ -21,9 +22,9 @@ export default function Repassword() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          setConfirmation(data?.message);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => setConfirmation(error.message));
     }
   };
 
@@ -35,14 +36,16 @@ export default function Repassword() {
         </div>
         <form
           onSubmit={handleNewPassWord}
-          className="flex flex-col max-w-md space-y-5"
+          className="flex flex-col max-w-md space-y-5   mb-7"
         >
           <input
             type="text"
+            required
             onChange={(e) => setPassword(e.target.value)}
             placeholder="New Password"
             className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
           />
+
           <button className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-gray-500 text-white">
             Confirm
           </button>
