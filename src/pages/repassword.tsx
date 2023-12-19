@@ -12,7 +12,7 @@ export default function Repassword() {
 
     if (token && password) {
       fetch(`https://api.dreamfurniturebd.com/api/v1/auth/reset-password`, {
-        method: "POST",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           token: `${token}`,
@@ -20,7 +20,9 @@ export default function Repassword() {
         body: JSON.stringify({ newPassword: password }),
       })
         .then((res) => res.json())
-        .then((data) => {console.log(data)})
+        .then((data) => {
+          console.log(data);
+        })
         .catch((error) => console.log(error));
     }
   };
