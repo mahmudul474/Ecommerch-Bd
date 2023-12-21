@@ -28,7 +28,7 @@ const SubImgSlider: React.FC<SubImgSliderProps> = ({
   return (
     <div className="flex flex-col items-center">
       <div className="flex overflow-hidden">
-        {images.slice(startIndex, startIndex + 4).map((imageUrl, index) => (
+        {images?.slice(startIndex, startIndex + 4).map((imageUrl, index) => (
           <div key={index} className="mx-2">
             <Image
               width={100}
