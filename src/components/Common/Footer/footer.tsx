@@ -1,7 +1,6 @@
-import React from "react";
-import logo from "../../../assates/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import logo from "../../../assates/logo.svg";
 
 export default function Footer() {
   return (
@@ -78,14 +77,14 @@ export default function Footer() {
                       Faq
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link
                       href="/feedback"
                       className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
                       Feed-back
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link
                       href="/privacy-policy"
